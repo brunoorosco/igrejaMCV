@@ -2,32 +2,34 @@
 
 namespace Source\Controllers;
 
-use Source\Models\Empresa;
-use Source\Models\FuncionarioModel;
+use Source\Models\CemModel;
+use Source\Models\UserModel;
+use Source\Models\MembersModel;
 
 
-class WebEmpresa extends Controller
+
+class CemController extends Controller
 {
-     /** @var FuncionarioModal   */
-     protected $user;
+    /** @var UserModal   */
+    protected $user;
 
-     public function __construct($router)
-     {
-         parent::__construct($router);
-         if (empty($_SESSION["user"]) || !$this->user = (new FuncionarioModel())->findById($_SESSION["user"])) {
-             unset($_SESSION["user"]);
-            
-             flash("error", "Acesso negado!");
-             $this->router->redirect("web.login");
-         }
-     }
-
-    public function empresa($data): void
+    public function __construct($router)
     {
-        $empresas = (new Empresa())->find()->order("Codigo DESC")->fetch(true);
-        echo $this->view->render("empresas/listar", [
-            "title" => "Empresas | " . SITE['name'],
-            "empresas" => $empresas
+        parent::__construct($router);
+        if (empty($_SESSION["user"]) || !$this->user = (new UserModel())->findById($_SESSION["user"])) {
+            unset($_SESSION["user"]);
+
+            flash("error", "Acesso negado!");
+            $this->router->redirect("web.login");
+        }
+    }
+
+    public function cem($data): void
+    {
+        $members = (new MembersModel())->find()->order("nome ASC")->fetch(true);
+        echo $this->view->render("cem/listar", [
+            "title" => "Minha CEM | " . SITE['name'],
+            "members" => $members
         ]);
     }
 
@@ -41,19 +43,20 @@ class WebEmpresa extends Controller
 
     public function buscar($data)
     {
-        $empresa = Empresa::buscarEmpresa($data);
+        //  $empresa = Empresa::buscarEmpresa($data);
 
         // Decodifica o formato JSON e retorna um Objeto
         //  $json = json_decode($empresa);
-        echo ($empresa);
+        //   echo ($empresa);
         // Loop para percorrer o Objeto
         // die();
         //echo $empresa;
     }
-    public function atualizar($data){
-        $atualizar = $this->update_create($data,"update");
+    public function atualizar($data)
+    {
+        $atualizar = $this->update_create($data, "update");
         //if ($empresa->save()) {
-            if($atualizar){
+        if ($atualizar) {
             $callback["message"] = "Empresa Atualizada com sucesso!";
             $callback["action"] = "success";
             echo json_encode($callback);
@@ -97,9 +100,9 @@ class WebEmpresa extends Controller
         // $empresa->CodigoCliente = $jobData["codCliente"];
         // $empresa->Celular = $jobData["txt_celular"];
         // $empresa->Email = $jobData["txt_email"];
-        $criar = $this->update_create($data,"create");
+        $criar = $this->update_create($data, "create");
         //if ($empresa->save()) {
-            if($criar){
+        if ($criar) {
             $callback["message"] = "Empresa cadastrada com sucesso!";
             $callback["action"] = "success";
             echo json_encode($callback);
@@ -110,55 +113,32 @@ class WebEmpresa extends Controller
         }
     }
 
-    public function update_create($data, $func):bool
-    {
-        if($func === "update")
-        {
-            $empresa = (new Empresa())->findById($data['codCliente']);
-        }else{
-            $empresa = new Empresa();
-        }
+    public function update_create($data, $func): bool
+    { 
+        $member = (new MembersModel())->findById($data['idmembros']);
 
         $jobData = filter_var_array($data, FILTER_SANITIZE_STRING);
-        if (empty($jobData["razao_social"])) {
-            $callback["message"] = message("informe o Nome da Empresa");
-            echo json_encode($callback);
-            return false;
-        }
-        $cnpj = str_replace(array('.', ',', '-', '/'), '', $jobData["cnpj"]);
-        
-        $empresa->Nome = $jobData["razao_social"];
-        $empresa->CNPJ = $cnpj;
-        $empresa->Ie = $jobData["txt_ie"];
-        $empresa->CEP = $jobData["txt_cep"];
-        $empresa->Endereco = $jobData["txt_endereco"];
-        $empresa->Numero = $jobData["txt_numero"];
-        $empresa->Cidade = $jobData["txt_cidade"];
-        $empresa->Bairro = $jobData["txt_bairro"];
-        $empresa->Estado = $jobData["txt_estado"];
-        $empresa->Contato = $jobData["txt_contato"];
-        $empresa->Telefone = $jobData["txt_telefone"];
-        $empresa->Ramal = $jobData["txt_ramal"];
-        $empresa->Fax = $jobData["txt_fax"];
-        $empresa->Telefone2 = $jobData["txt_telefone2"];
-        $empresa->Celular = $jobData["txt_celular"];
-        $empresa->CPF = $jobData["txt_cpf"];
-        $empresa->Sgset = $jobData["txt_sgset"];
-        $empresa->CodigoCliente = $jobData["codCliente"];
-        $empresa->Celular = $jobData["txt_celular"];
-        $empresa->Email = $jobData["txt_email"];
-        if($empresa->save())return true;
+       
+        $member->nome = $jobData["nome"];
+        $member->email = $jobData["email"];
+        $member->nasc = date("Y-m-d", strtotime($jobData["nasc"]));
+        $member->cargo = $jobData["cargo"];
+        $member->supervisao = $jobData["supervisao"];
+        $member->igreja = $jobData["igreja"];
+        $member->telefone = $jobData["telefone"];
+        $member->endereco = $jobData["endereco"];
+        $member->numero = $jobData["numero"];
+        var_dump($member);
+        if ($member->save()) return true;
         else return false;
-
-
     }
 
     public function editar($data): void
     {
-        $empresa = (new Empresa())->findById("{$data["id"]}");
-        echo $this->view->render("empresas/edit", [
+        $member = (new MembersModel())->findById("{$data["id"]}");
+        echo $this->view->render("cem/edit", [
             "title" => "{$data["id"]} | " . SITE['name'],
-            "empresa" => $empresa
+            "member" => $member
 
         ]);
     }
@@ -167,24 +147,12 @@ class WebEmpresa extends Controller
         if (empty($data["id"])) return;
 
         $id = filter_var($data["id"], FILTER_VALIDATE_INT);
-        $empresa = (new Empresa())->findById($id);
+        $member = (new MembersModel())->findById($id);
 
-        if ($empresa) {
-            $empresa->destroy();
+        if ($member) {
+            $member->destroy();
         }
         $callback = true;
         echo json_encode($callback);
-    }
-
-    public function CNPJ()
-    {
-        $cnpj = $this->input->post('cnpj');
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://receitaws.com.br/v1/cnpj/{$cnpj}");
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        $output = curl_exec($ch);
     }
 }

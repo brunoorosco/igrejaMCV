@@ -2,7 +2,7 @@
 
 namespace Source\Controllers;
 
-use Source\Models\FuncionarioModel;
+use Source\Models\UserModel;
 
 class Auth extends Controller
 {
@@ -23,20 +23,21 @@ class Auth extends Controller
             return;
         }
 
-        $user = (new FuncionarioModel())->find("Usuario = :e", "e={$email}")->fetch(false);
-        $passwd = md5($passwd);
+        $user = (new UserModel())->find("username = :e", "e={$email}")->fetch(false);
+        $passwd = sha1($passwd);
          //if (!$user || !password_verify($passwd, $user->passwd)) {
-        if (!$user ||  $passwd != $user->Senha) {
+        if (!$user ||  $passwd != $user->password) {
             echo $this->ajaxResponse("message", [
                 "type" => "alert",
                 "message" => "E-mail ou senha não conferem!"
+               // "message" => $user->password
             ]);
             return;
         }
 
-        $_SESSION["user"] = $user->Codigo;
-        $_SESSION["userName"] = $user->Nome;
-        $_SESSION["userJob"] = $user->Codigo;
+        $_SESSION["user"] = $user->id;
+        $_SESSION["userName"] = $user->username;
+        $_SESSION["userJob"] = $user->nivel_acesso;
 
         echo $this->ajaxResponse("redirect",["url" => $this->router->route("app.home")]);
     }
@@ -52,10 +53,10 @@ class Auth extends Controller
             return;
         }
 
-        $user = new FuncionarioModel();
-        $user->Nome = $data["first_name"];
-        $user->Email = $data["email"];
-        $user->Senha = password_hash($data["passwd"], PASSWORD_DEFAULT);
+        $user = new UserModel();
+        //$user->Nome = $data["first_name"];
+        $user->Email = $data["username"];
+        $user->Senha = password_hash($data["password"], PASSWORD_DEFAULT);
 
         if (!$user->save()) {
             echo $this->ajaxResponse("message", [

@@ -2,14 +2,14 @@
 
 namespace Source\Controllers;
 
-use Source\Models\FuncionarioModel;
+use Source\Models\UserModel;
 
-class FuncionarioController extends Controller
+class UserController extends Controller
 {
     public function __construct($router)
     {
         parent::__construct($router);
-        if (empty($_SESSION["user"]) || !$this->user = (new FuncionarioModel())->findById($_SESSION["user"])) {
+        if (empty($_SESSION["user"]) || !$this->user = (new UserModel())->findById($_SESSION["user"])) {
             unset($_SESSION["user"]);
            
             flash("error", "Acesso negado!");
@@ -21,7 +21,7 @@ class FuncionarioController extends Controller
     {  
        // echo $email;
        //$user = User::login($email,$senha);
-       $funcionarios = (new FuncionarioModel())->find()->fetch(true);
+       $funcionarios = (new UserModel())->find()->fetch(true);
       // var_dump($comps);
        echo $this->view->render("funcionario/todos",[
            "title" => "Funcionários | ". SITE['name'],
@@ -44,7 +44,7 @@ class FuncionarioController extends Controller
         if (empty($data["id"])) return;
 
         $id = filter_var($data["id"], FILTER_VALIDATE_INT);
-        $func = (new FuncionarioModel())->findById($id);
+        $func = (new UserModel())->findById($id);
         var_dump($func);
         if ($func) {
             $func->destroy();

@@ -3,12 +3,12 @@
 define(
     "SITE",
     [
-        "name" => "#S-LAB",
-        "desc" => "Sistema Laboratorial de Medição e Calibração",
+        "name" => "#SomosCEM",
+        "desc" => "GESTÃO DE MEMBRESIA COMUNIDADE AVIVAMENTO EM CRISTO",
         "domain" => "localhost/",
         //"domain" => "slab.sp.senai.br/",
         "locale" => "pt-br",
-        "root" => "http://10.104.66.120/slab"
+        "root" => "http://localhost/newIgreja"
         //"root" => "https://slab.sp.senai.br"
     ]
 );
@@ -21,9 +21,9 @@ if ($_SERVER["SERVER_NAME"] == "localhost") {
 
 define("DATA_LAYER_CONFIG", [
     "driver" => "mysql",
-    "host" => "10.104.66.120" ,
+    "host" => "localhost" ,
     "port" => "3306",
-    "dbname" => "slab",
+    "dbname" => "db_igreja",
     "username" => "brunoorosco",
     "passwd" => "123456",
     "options" => [

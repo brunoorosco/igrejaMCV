@@ -3,14 +3,14 @@
 namespace Source\Controllers;
 
 use Source\Models\CompModel;
-use Source\Models\FuncionarioModel;
+use Source\Models\UserModel;
 
 class CompController extends Controller
 {
     public function __construct($router)
     {
         parent::__construct($router);
-        if (empty($_SESSION["user"]) || !$this->user = (new FuncionarioModel())->findById($_SESSION["user"])) {
+        if (empty($_SESSION["user"]) || !$this->user = (new UserModel())->findById($_SESSION["user"])) {
             unset($_SESSION["user"]);
            
             flash("error", "Acesso negado!");

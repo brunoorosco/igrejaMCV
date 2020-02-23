@@ -5,7 +5,7 @@ namespace Source\Controllers;
 use Source\Models\Orcamento;
 use Source\Models\Empresa;
 use Source\Models\PlanoModel;
-use Source\Models\FuncionarioModel;
+use Source\Models\UserModel;
 use PhpOffice\Common;
 use Phpoffice\PhpWord;
 use Source\Models\NormaModel;
@@ -19,7 +19,7 @@ class Atendimento extends Controller
   public function __construct($router)
   {
     parent::__construct($router);
-    if (empty($_SESSION["user"]) || !$this->user = (new FuncionarioModel())->findById($_SESSION["user"])) {
+    if (empty($_SESSION["user"]) || !$this->user = (new UserModel())->findById($_SESSION["user"])) {
       unset($_SESSION["user"]);
      
       flash("error", "Acesso negado!");
@@ -29,7 +29,7 @@ class Atendimento extends Controller
 
   public function atendimento($data): void
   {
-    $tecnico = (new FuncionarioModel())->find("CodFuncao = :cod", "cod=3")->order("Nome ASC")->fetch(true);
+    $tecnico = (new UserModel())->find("CodFuncao = :cod", "cod=3")->order("Nome ASC")->fetch(true);
     $ensaios = (new EnsaioModel())->find()->order("Nome ASC")->fetch(true);
     $normas = (new NormaModel())->find()->order("Nome ASC")->fetch(true);
     //CARREGA O uLTIMO NUMERO SEQUENCIAL
@@ -91,7 +91,7 @@ class Atendimento extends Controller
   {
     date_default_timezone_set('UTC');
 
-    $tecnico = (new FuncionarioModel())->findById($data['tecnico']);
+    $tecnico = (new UserModel())->findById($data['tecnico']);
 
     if ($func === "update") {
       $ensaio = (new PlanoModel())->findById($data['Codigo']);

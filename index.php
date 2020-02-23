@@ -68,19 +68,23 @@ $route->put("/edit/{id}", "CompController:editar");
 $route->post("/excluir", "CompController:excluir");
 $route->get("/{id}/editar", "CompController:editar");
 
+$route->group("/minhacem");
+$route->get("/", "cemController:cem");
+$route->get("/edit/{id}", "cemController:editar", "cemcontroller.editar");
+
+$route->post("/excluir", "cemController:excluir");
+$route->post("/edit", "cemController:atualizar");
+
 /**
  * webEmpresa
  * Empresa
  */
-$route->group("/empresa");
-$route->get("/", "WebEmpresa:empresa");
-$route->get("/add", "WebEmpresa:incluir");
-$route->post("/add", "WebEmpresa:adicionar");
-$route->get("/edit/{id}", "WebEmpresa:editar");
-$route->post("/edit", "WebEmpresa:atualizar");
-$route->post("/excluir", "WebEmpresa:excluir");
-$route->get("/{id}/editar", "WebEmpresa:editar");
-//$route->post("/busca/?{id}","WebEmpresa:buscar");
+$route->group("/cem");
+$route->get("/", "cemController:cem");
+$route->get("/add", "cemController:incluir");
+$route->post("/add", "cemController:adicionar");
+
+//$route->post("/busca/?{id}","cemController:buscar");
 /**
  * NormaController
  * acesso responsavel pelas normas 

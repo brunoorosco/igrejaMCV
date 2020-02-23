@@ -4,11 +4,14 @@ namespace Source\Models;
 
 use CoffeeCode\DataLayer\DataLayer;
 use Exception;
-use Source\Models\UserModel;
 
-
-class User extends DataLayer
+class MembersModel extends DataLayer
 {
+    public function __construct()
+    {
+         parent::__construct("membros", ["nome","cargo","igreja"], "idmembros", true);
+    }
+
     protected function validaEmail(): bool
     {
         if (empty($this->email) || !filter_var($this->email, FILTER_VALIDATE_EMAIL)) {

@@ -14,7 +14,7 @@
 
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>Empresas</h5>
+                    <h5>Membros</h5>
 
                     <div class="ibox-tools">
                         <a class="collapse-link">
@@ -36,37 +36,33 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table" id="tabelaEmpresa">
+                    <table class="table" id="tabelaMerbers">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Empresa</th>
+                                <th>Membro</th>
                                 <th>Telefone</th>
-                                <th>CNPJ</th>
+                                <th>E-Mail</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            foreach ($empresas as $empresa) :
-                                $array = explode('/', $empresa->Email); // função para pegar só o primeiro email
-                                if (strlen($empresa->CNPJ) == 14) {
-                                    $cnpj = vsprintf("%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s", str_split($empresa->CNPJ));
-                                } else $cnpj = $empresa->CNPJ;
+                            foreach ($members as $member) :
                             ?>
 
                                 <tr>
-                                    <td class="text-left" scope="row"><?= $empresa->Codigo ?></td>
-                                    <td class="text-left" scope="row"><?= $empresa->Nome ?></td>
-                                    <!--<td class="text-left" scope="row"><?= $array[0] ?></td>-->
-                                    <td class="text-left" scope="row"><?= $empresa->Telefone ?></td>
-                                    <td class="text-left cnpj" id="cnpj" scope="row"><?= $cnpj ?></td>
-                                    <td class="text-center">
+                                    <td class="text-left" scope="row"><?= $member->idmembros ?></td>
+                                    <td class="text-left" scope="row"><?= $member->nome ?></td>
+                                    <td class="text-left" scope="row"><?= $member->telefone ?></td>
+                                    <td class="text-left" scope="row"><?= $member->email ?></td>
 
-                                        <a data-action="<?= url("empresa/edit") ?>" data-id=<?= $empresa->Codigo ?> data-func="edit">
+                                    <td class="text-left">
+
+                                        <a data-action="<?= url("minhacem/edit") ?>" data-id=<?= $member->idmembros ?> data-func="edit">
                                             <i class="fa fa-pencil text-navy"></i>
                                         </a>
-                                        <a data-action="<?= url("empresa/excluir") ?>" data-id=<?= $empresa->Codigo ?> data-nome=<?= $empresa->Nome ?> data-func="exc">
+                                        <a data-action="<?= url("minhacem/excluir") ?>" data-id=<?= $member->idmembros ?> data-nome=<?= $member->nome ?> data-func="exc">
                                             <i class="fa fa-trash text-navy"></i>
                                         </a>
 
@@ -88,12 +84,13 @@
 <?php $v->start("js"); ?>
 <script src="<?= asset('js/sweetalert.min.js') ?>"></script>
 <script src="<?= asset('js/datatables.min.js') ?>"></script>
+<script src="<?= asset('js/load.js') ?>"></script>
 
 <script>
     $(document).ready(function() {
-        $('#tabelaEmpresa').DataTable({
+        $('#tabelaMembers').DataTable({
             "order": [
-                [0, "desc"]
+                [1, "asc"]
             ], //o primeiro argumento serve pra selecionar a coluna e o segundo para informa se decrecente ou crescente
             "language": {
                 "lengthMenu": "Mostrar _MENU_ itens p/ Pág.",
@@ -110,15 +107,7 @@
 
         });
 
-        function load(action) {
-            var load_div = $(".ajax_load");
-            if (action === "open") {
-                load_div.fadeIn().css("display", "flex");
-
-            } else {
-                load_div.fadeOut();
-            }
-        }
+       
 
         $("body").on("click", "[data-action]", function(e) {
             e.preventDefault();
@@ -133,7 +122,7 @@
             // alert(data.action); //returna -> https://localhost/www/SLAB/empresa/editar
             if (func === "exc") {
                 swal({
-                        title: "Deseja realmente excluir a empresa?",
+                        title: "Deseja realmente excluir?",
                         text: data.nome,
                         icon: "warning",
                         buttons: {

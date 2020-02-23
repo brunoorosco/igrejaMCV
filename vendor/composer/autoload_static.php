@@ -16,8 +16,8 @@ class ComposerStaticInit957562f4c4be68de0fad397e19f0a507
         'bdc465a053da7f7ddb072631f6d41d45' => __DIR__ . '/..' . '/league/plates/src/Extension/LayoutSections/layout-sections.php',
         'afa76803f24616d7599be3b7b0846adc' => __DIR__ . '/..' . '/league/plates/src/Extension/Folders/folders.php',
         '16c5be35e32c6cf916d875518b909210' => __DIR__ . '/..' . '/league/plates/src/Util/util.php',
-        '3cd37d82344873f3e8144f52d9d30f94' => __DIR__ . '/../..' . '/source/Config/Config.php',
-        '9eac226e1c3c75ff85d0bb95d1041f0d' => __DIR__ . '/../..' . '/source/Config/Helpers.php',
+        'f559be85c145b88941978d290fece2d0' => __DIR__ . '/../..' . '/source/Config/Config.php',
+        '82490f31704cba0aebbd2214aaf4003c' => __DIR__ . '/../..' . '/source/Config/Helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -133,7 +133,7 @@ class ComposerStaticInit957562f4c4be68de0fad397e19f0a507
     );
 
     public static $classMap = array (
-        'Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
+        'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'HTML5_Data' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Data.php',
         'HTML5_InputStream' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/InputStream.php',
         'HTML5_Parser' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Parser.php',

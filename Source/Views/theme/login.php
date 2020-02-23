@@ -10,7 +10,7 @@
         <div class="container" style="margin-top: 10vh;">
             <div class="row text-white">
                 <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
-                    <h4 class="display-4 py-2 text-truncate">Acesso ao S-Lab </h4>
+                    <h5 class="display-4 py-2">Portal Comunidade Avivamento </h5>
 
                     <div class="px-2">
                         <div class="login_form_callback">

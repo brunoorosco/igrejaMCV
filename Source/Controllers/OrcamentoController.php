@@ -5,7 +5,7 @@ namespace Source\Controllers;
 use Source\Models\OrcamentoModel;
 use Source\Models\Empresa;
 use Source\Models\PlanoModel;
-use Source\Models\FuncionarioModel;
+use Source\Models\UserModel;
 use PhpOffice\Common;
 use Phpoffice\PhpWord;
 use Source\Models\NormaModel;

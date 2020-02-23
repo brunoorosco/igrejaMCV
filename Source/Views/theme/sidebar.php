@@ -24,12 +24,12 @@
 <body>
   <div class="page-wrapper chiller-theme toggled">
     <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-      <i class="fas fa-bar"></i>
+      <i class="fa fa-bars"></i>
     </a>
     <nav id="sidebar" class="sidebar-wrapper">
       <div class="sidebar-content">
         <div class="sidebar-brand">
-          <a href="#" class="text-white">System Lab</a>
+          <a href="#" class="text-white">Secretária Aviva</a>
           <div id="close-sidebar">
             <i class="fa fa-times"></i>
           </div>
@@ -71,14 +71,14 @@
             <li class="sidebar-dropdown">
               <a href="#">
                 <i class="fa fa-plus"></i>
-                <span>Cadastro</span>
+                <span>Minha CEM</span>
                 <span class="badge badge-pill badge-warning">New</span>
               </a>
               <div class="sidebar-submenu">
                 <ul>
-                  <li><a href="<?= url("comp/add"); ?>">Composições</a></li>
-                  <li><a href="<?= url("empresa/add"); ?>">Empresas</a></li>
-                  <li><a href="<?= url("func/add"); ?>">Funcionários</a></li>
+                  <li><a href="<?= url("minhacem"); ?>">Membros</a></li>
+                  <li><a href="<?= url("empresa/add"); ?>">Discipulado</a></li>
+                  <li><a href="<?= url("func/add"); ?>">Escola de Profeta</a></li>
                   <li><a href="#">Normas</a> </li>
                   <li><a href="../produtos/" class="lk_lista">Produtos</a></li>
                   <li><a href="../ensaios/" class="lk_lista">Tipos de Ensaios</a></li>
@@ -94,9 +94,9 @@
               </a>
               <div class="sidebar-submenu">
                 <ul>
-                  <li><a href="<?= url("comp"); ?>">Composições</a></li>
-                  <li><a href="<?= url("empresa"); ?>">Empresas</a></li>
-                  <li><a href="<?= url("ensaio"); ?>">Ensaios</a></li>
+                  <li><a href="<?= url("minhacem"); ?>">Membros da CEM</a></li>
+                  <li><a href="<?= url("igreja"); ?>">Igrejas</a></li>
+                  <li><a href="<?= url("cem"); ?>">CEM's</a></li>
                   <li><a href="<?= url("equipamento"); ?>">Equipamentos</a></li>
                   <li><a href="<?= url("func"); ?>">Funcionários</a></li>
                   <li><a href="<?= url("atendimento/plano"); ?>">Plano de Atendimento</a></li>
