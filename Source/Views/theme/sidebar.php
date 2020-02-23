@@ -226,30 +226,14 @@
 
   <script src="<?= asset('js/popper.js') ?>"></script>
   <script src="<?= asset('bootstrap/js/bootstrap.min.js') ?>"></script>
-
-  <!-- Peity -->
-  <script src="<?= asset('js/plugins/peity/jquery.peity.min.js') ?>"></script>
-  <script src="<?= asset('js/demo/peity-demo.js') ?>"></script>
-
-  <!-- Custom and plugin javascript -->
-  <!-- <script src="js/inspinia.js"></script> -->
-  <script src="<?= asset('js/plugins/pace/pace.min.js') ?>"></script>
-
+  <script src="<?= asset('js/sweetalert.min.js') ?>"></script>
   <!-- jQuery UI -->
-  <script src="<?= asset('js/plugins/jquery-ui/jquery-ui.min.js') ?>"></script>
+  <script src="<?= asset('js/jquery-ui.min.js') ?>"></script>
 
-  <!-- GITTER -->
-  <script src="<?= asset('js/plugins/gritter/jquery.gritter.min.js') ?>"></script>
-
-  <!-- Sparkline -->
-  <script src="<?= asset('js/plugins/sparkline/jquery.sparkline.min.js') ?>"></script>
-
-  <!-- Sparkline demo data  -->
-  <script src="<?= asset('js/demo/sparkline-demo.js') ?>"></script>
-
-  <!-- Toastr -->
-  <script src="<?= asset('js/plugins/toastr/toastr.min.js') ?>"></script>
   <script src="<?= asset('js/sidebar.js') ?>"></script>
+  <script src="<?= asset('js/form.js') ?>"></script>
+  <script src="<?= asset('js/jquery.mask.min.js') ?>"></script>
+
 
 
   <?= $v->section("js"); ?>

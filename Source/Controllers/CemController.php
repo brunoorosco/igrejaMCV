@@ -121,7 +121,7 @@ class CemController extends Controller
        
         $member->nome = $jobData["nome"];
         $member->email = $jobData["email"];
-        $member->nasc = date("Y-m-d", strtotime($jobData["nasc"]));
+        $member->nasc =  date("Y-m-d",strtotime(str_replace('/','-',$jobData["nasc"])));
         $member->cargo = $jobData["cargo"];
         $member->supervisao = $jobData["supervisao"];
         $member->igreja = $jobData["igreja"];

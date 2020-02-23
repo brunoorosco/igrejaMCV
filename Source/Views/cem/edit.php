@@ -1,6 +1,14 @@
 <?php $v->layout("theme/sidebar"); ?>
 <!-- CADASTRO DE EMPRESAS -->
 
+<?php $v->start("css"); ?>
+
+<link rel="stylesheet" href="<?= asset('css/form.css'); ?>">
+<link rel="stylesheet" href="<?= asset('css/load.css'); ?>">
+<link rel="stylesheet" href="<?= asset('css/message.css'); ?>">
+
+<?php $v->end(); ?>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -49,11 +57,11 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col-3">
-                                        <span id="cadEmpresa_tit26" class="texto">Niver</span>
-                                        <input type="text" name="nasc" maxlength="10" class="form-control date" value="<?= date("d/m/Y", strtotime($member->nasc)) ?>" />
+                                        <span class="texto">Niver</span>
+                                        <input type="text" name="nasc" maxlength="10" class="form-control date" value="<?= date("d/m/Y",strtotime(str_replace('-','/',$member->nasc))) ?>" />
                                     </div>
                                     <div class="col-3">
-                                        <span id="cadEmpresa_tit26" class="texto">Celular</span>
+                                        <span class="texto">Celular</span>
                                         <input type="text" name="telefone" maxlength="15" class="form-control cel" value="<?= $member->telefone ?>" />
                                     </div>
                                 </div>
@@ -67,7 +75,7 @@
 
                                         <div class="input-group">
                                             <div class="input-group-append">
-                                                <input type="text" name="cep" class="form-control cep" id="txt_cep" value="<?= $member->CEP  ?>" />
+                                                <input type="text" name="cep" class="form-control cep" id="txt_cep" value="<?= $member->cep  ?>" />
                                                 <button class="btn btn-success" id="pesquisar" type="button"><i class="fa fa-search"></i></button>
                                             </div>
                                         </div>
@@ -75,12 +83,12 @@
 
                                     <div class="col">
                                         <span id="" class="">Endereço</span>
-                                        <input type="text" name="endereco" maxlength="100" class="form-control" id="txt_rua" />
+                                        <input type="text" name="endereco" maxlength="100" class="form-control" id="txt_rua" value="<?= $member->endereco  ?>" />
                                     </div>
 
                                     <div class="col-2">
                                         <span id="" class="texto">Número</span>
-                                        <input type="text" name="numero" maxlength="10" class="form-control" id="txt_numero" value="<?= $member->Numero  ?>" />
+                                        <input type="text" name="numero" maxlength="10" class="form-control" id="txt_numero" value="<?= $member->numero  ?>" />
                                     </div>
                                 </div>
 
@@ -118,8 +126,8 @@
                                     </div>
                                     <div class="col">
                                         <span id="cadEmpresa_tit12" class="texto">Igreja</span>
-                                        <input hidden type="text" name="igreja" maxlength="14" class="form-control" id="txt_igreja" value="<?= $member->igreja ?>" />
-                                        <input disabled type="text" name="igreja" maxlength="14" class="form-control" id="txt_igreja" value="<?= $member->igreja ?>" />
+                                        <input hidden type="text" name="igreja" maxlength="14" class="form-control"  value="<?= $member->igreja ?>" />
+                                        <input disabled type="text" name="igreja" maxlength="14" class="form-control" value="<?= $member->igreja ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -148,10 +156,11 @@
 </div>
 
 <?php $v->start("js"); ?>
+<script src="<?= asset('js/maskara.js') ?>"></script>
 <script src="<?= asset('js/validacao.js') ?>"></script>
 <script src="<?= asset('js/cep.js') ?>"></script>
-<script src="<?= asset('js/sweetalert.min.js') ?>"></script>
-<script src="<?= asset('js/jquery.mask.min.js') ?>"></script>
-<script src="<?= asset('js/maskara.js') ?>"></script>
-<script src="<?= asset('js/form.js') ?>"></script>
+
+
+
+
 <?php $v->end(); ?>

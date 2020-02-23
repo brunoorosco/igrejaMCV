@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    console.log("entrou");
+  
  function limpa_formulário_cep() {
             // Limpa valores do formulário de cep.
             $("#txt_rua").val("");
@@ -10,9 +10,7 @@ $(document).ready(function() {
       
         //Quando o campo cep perde o foco.
         $("#txt_cep").blur(function() {
-            console.log("chegou");
-
-            //Nova variável "cep" somente com dígitos.
+                      //Nova variável "cep" somente com dígitos.
             var cep = $(this).val().replace(/\D/g, '');
 
             //Verifica se campo cep possui valor informado.
@@ -45,14 +43,25 @@ $(document).ready(function() {
                         else {
                             //CEP pesquisado não foi encontrado.
                             limpa_formulário_cep();
-                            alert("CEP não encontrado.");
+                            swal({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'CEP não encontrado!!'
+                               
+                              })
+                         
                         }
                     });
                 } //end if.
                 else {
                     //cep é inválido.
                     limpa_formulário_cep();
-                    alert("Formato de CEP inválido.");
+                    swal({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Formato de CEP inválido.'
+                       
+                      })
                 }
             } //end if.
             else {
