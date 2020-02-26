@@ -37,8 +37,12 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <div class="ajax_load" style="display: none"></div>
-                    <form  action="<?= url('minhacem/edit') ?>" method="post">
+                     <div class="ajax_load" style="display: none"></div> 
+                    <div class="login_form_callback">
+                        <?= flash(); ?>
+                    </div>
+                    <form action="<?= url('minhacem/edit') ?>" method="post" autocomplete="off">
+
                         <input hidden name="idmembros" value="<?= $member->idmembros ?>" />
                         <div class="card">
                             <div class="card-header">
@@ -58,7 +62,7 @@
                                 <div class="row form-group">
                                     <div class="col-3">
                                         <span class="texto">Niver</span>
-                                        <input type="text" name="nasc" maxlength="10" class="form-control date" value="<?= date("d/m/Y",strtotime(str_replace('-','/',$member->nasc))) ?>" />
+                                        <input type="text" name="nasc" maxlength="10" class="form-control date" value="<?= date("d/m/Y", strtotime(str_replace('-', '/', $member->nasc))) ?>" />
                                     </div>
                                     <div class="col-3">
                                         <span class="texto">Celular</span>
@@ -103,7 +107,7 @@
                                         <input type="text" name="bairro" maxlength="50" class="form-control" id="txt_bairro" value="<?= $member->Bairro  ?>" />
                                     </div>
 
-                                    <div class="col-1"><span id="cadEmpresa_tit10" class="texto">Estado</span>
+                                    <div class="col-1"><span id="cadEmpresa_tit10" class="texto">UF</span>
                                         <input type="text" name="estado" class="form-control" id="txt_estado" maxlength="2" value="<?= $member->Estado  ?>" />
                                     </div>
                                 </div>
@@ -126,7 +130,7 @@
                                     </div>
                                     <div class="col">
                                         <span id="cadEmpresa_tit12" class="texto">Igreja</span>
-                                        <input hidden type="text" name="igreja" maxlength="14" class="form-control"  value="<?= $member->igreja ?>" />
+                                        <input hidden type="text" name="igreja" maxlength="14" class="form-control" value="<?= $member->igreja ?>" />
                                         <input disabled type="text" name="igreja" maxlength="14" class="form-control" value="<?= $member->igreja ?>" />
                                     </div>
                                 </div>
@@ -145,7 +149,7 @@
                         <div class="row">
                             <div class="col ">
                                 <button type="submit" class="btn btn-success">Atualizar</button>
-                                <a type="button" class="btn btn-light" href="<?= url('empresa') ?>">Voltar</a>
+                                <a type="button" class="btn btn-light" href="<?= url('minhacem') ?>">Voltar</a>
                             </div>
                         </div>
                     </form>

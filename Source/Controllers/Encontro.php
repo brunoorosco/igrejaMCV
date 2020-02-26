@@ -4,8 +4,8 @@ namespace Source\Controllers;
 
 
 use Source\Models\UserModel;
-use Source\Models\EnsaioModel;
-use Source\Models\NormaModel;
+use Source\Models\EncontroModel;
+use Source\Models\EncontristaModel;
 
 
 class EnsaioController extends Controller
@@ -23,7 +23,7 @@ class EnsaioController extends Controller
 
     public function ensaios($ensaio): void
     {
-        $ensaios = (new EnsaioModel())->find()->fetch(true);
+        $ensaios = (new EncontroModel())->find()->fetch(true);
 
         echo $this->view->render("../ensaio/ensaio", [
             "title" => "Ensaios  | " . SITE['name'],
@@ -65,14 +65,14 @@ class EnsaioController extends Controller
     public function update_create($data, $func): bool
     {
 
-        $norma = (new NormaModel())->find("Nome = :name", "name={$data['nomeNorma']}")->fetch(false);
+        $norma = (new EncontristaModel())->find("Nome = :name", "name={$data['nomeNorma']}")->fetch(false);
         if (!$norma) return false;
 
 
         if ($func === "update") {
-            $ensaio = (new EnsaioModel())->findById($data['Codigo']);
+            $ensaio = (new EncontroModel())->findById($data['id']);
         } else {
-            $ensaio = new EnsaioModel();
+            $ensaio = new EncontroModel();
         }
 
         $jobData = filter_var_array($data, FILTER_SANITIZE_STRING);
@@ -98,11 +98,11 @@ class EnsaioController extends Controller
     public function editar($data): void
     {
         /** não esquecer de inserir uma coluna com a cod de norma no ensaio */
-        $ens = new EnsaioModel();
+        $ens = new EncontroModel();
         $ensaio = $ens->findById("{$data["id"]}");
 
         if ($ensaio->codNorma) {
-            $norma = (new NormaModel())->findById($ensaio->codNorma);
+            $norma = (new EncontristaModel())->findById($ensaio->codNorma);
         }
 
         //   $norma = $ens->ensaioNorma($ensaio);
@@ -120,7 +120,7 @@ class EnsaioController extends Controller
         if (empty($data["id"])) return;
 
         $id = filter_var($data["id"], FILTER_VALIDATE_INT);
-        $ensaio = (new EnsaioModel())->findById($id);
+        $ensaio = (new EncontroModel())->findById($id);
         var_dump($ensaio);
         if ($ensaio) {
             $ensaio->destroy();

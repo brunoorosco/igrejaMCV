@@ -50,7 +50,7 @@
           </div>
         </div>
         <!-- sidebar-header  -->
-        <div class="sidebar-search">
+        <!-- <div class="sidebar-search">
           <div>
             <div class="input-group">
               <input type="text" class="form-control search-menu" placeholder="Search...">
@@ -61,16 +61,39 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- sidebar-search  -->
         <div class="sidebar-menu">
           <ul>
             <li class="header-menu">
               <span class="text-black-50">Geral</span>
             </li>
+            <li>
+              <a href="<?= url(); ?>">
+                <i class="fa fa-bar-chart"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <!-- Libera item para quem é responsavel pelo administrativo das igrejas -->
+            <?php if ($_SESSION['userJob'] == 1) : ?>
+              <li class="sidebar-dropdown">
+                <a href="#">
+                  <i class="fa fa-archive"></i>
+                  <span>Secretária Geral</span>
+                </a>
+                <div class="sidebar-submenu">
+                  <ul>
+                    <li><a href="<?= url("batismo"); ?>">Batismo</a></li>
+                    <li><a href="<?= url("cursos"); ?>">Consulta de Cursos</a></li>
+                  </ul>
+                </div>
+              </li>
+            <?php endif; ?>
+
+
             <li class="sidebar-dropdown">
               <a href="#">
-                <i class="fa fa-plus"></i>
+                <i class="fa fa-child"></i>
                 <span>Minha CEM</span>
                 <span class="badge badge-pill badge-warning">New</span>
               </a>
@@ -111,43 +134,43 @@
             <li class="sidebar-dropdown">
               <a href="#">
                 <i class="fa fa-print"></i>
-                <span>Impressão</span>
+                <span>Downloads</span>
               </a>
               <div class="sidebar-submenu">
                 <ul>
                   <li>
-                    <a href="#">Etiquetas</a>
+                    <a href="#">Ficha Encontro</a>
                   </li>
                   <li>
-                    <a href="#">Plano</a>
+                    <a href="#">Logo</a>
                   </li>
                   <li>
-                    <a href="#">Tables</a>
+                    <a href="#">Grupo de Apoio</a>
                   </li>
                   <li>
-                    <a href="#">Icons</a>
+                    <a href="#">Certificado de Batismo</a>
                   </li>
                 </ul>
               </div>
             </li>
             <li class="sidebar-dropdown">
               <a href="#">
-                <i class="fa fa-chart-line"></i>
-                <span>Charts</span>
+                <i class="fa fa-plus"></i>
+                <span>Ministérios</span>
               </a>
               <div class="sidebar-submenu">
                 <ul>
                   <li>
-                    <a href="#">Pie chart</a>
+                    <a href="#">Aviva Produções</a>
                   </li>
                   <li>
-                    <a href="#">Line chart</a>
+                    <a href="#">Quatro Seres</a>
                   </li>
                   <li>
-                    <a href="#">Bar chart</a>
+                    <a href="#">Obreiros</a>
                   </li>
                   <li>
-                    <a href="#">Histogram</a>
+                    <a href="#">Kids</a>
                   </li>
                 </ul>
               </div>

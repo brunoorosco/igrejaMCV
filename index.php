@@ -58,22 +58,44 @@ $route->post("/os/excluir", "OrcamentoController:excluir");
 
 /**
  * controller: Composicao
- * Composições
+ * BATISMO
  */
-$route->group("/comp");
-$route->get("/", "CompController:home");
-$route->get("/add", "CompController:incluir");
+////GET
+$route->group("/batismo");
+$route->get("/", "BatController:list", "batcontroller.list");
+$route->get("/add", "BatController:new", "batcontroller.new");
+////POST
+$route->group("/batismo");
 $route->post("/add", "CompController:adicionar");
-$route->put("/edit/{id}", "CompController:editar");
 $route->post("/excluir", "CompController:excluir");
-$route->get("/{id}/editar", "CompController:editar");
+///PUT
+$route->put("/edit/{id}", "CompController:editar");
+////DELETE
+
+/**
+ * controller: Composicao
+ * BATISMO
+ */
+////GET
+$route->group("/curso");
+$route->get("/", "CourseController:list", "coursecontroller.list");
+$route->get("/add", "CourseController:new", "coursecontroller.new");
+////POST
+$route->group("/batismo");
+$route->post("/add", "CourseController:adicionar", "coursecontroller.adicionar");
+$route->post("/excluir", "CourseController:excluir", "coursecontroller.excluir");
+///PUT
+$route->put("/edit/{id}", "CourseController:editar", "coursecontroller.editar");
+////DELETE
+
 
 $route->group("/minhacem");
 $route->get("/", "cemController:cem");
 $route->get("/edit/{id}", "cemController:editar", "cemcontroller.editar");
+$route->get("/buscar", "cemController:buscar", "cemcontroller.buscar");
 
 $route->post("/excluir", "cemController:excluir");
-$route->post("/edit", "cemController:atualizar");
+$route->post("/edit", "cemController:atualizar","cemcontroller.atualizar");
 
 /**
  * webEmpresa

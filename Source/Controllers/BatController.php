@@ -2,13 +2,13 @@
 
 namespace Source\Controllers;
 
-use Source\Models\CemModel;
+use Source\Models\EventosModel;
 use Source\Models\UserModel;
 use Source\Models\MembersModel;
 
 
 
-class CemController extends Controller
+class BatController extends Controller
 {
     /** @var UserModal   */
     protected $user;
@@ -24,13 +24,15 @@ class CemController extends Controller
         }
     }
 
-    public function cem($data): void
-    {
-        $cem =  $_SESSION['cem'];
-        $members = (new MembersModel())->find("supervisao = :c","c={$cem}")->order("nome ASC")->fetch(true);
-        echo $this->view->render("cem/listar", [
+    public function list(): void
+    {   $bat = "Batizado";    
+        $batismo = (new EventosModel())->find("titulo = :t","t={$bat}")->fetch(true);
+        
+       
+     //  $batismo = (new BatModel())->find("cem = :c", "c={$bat}")->order("nome ASC")->fetch(true);
+        echo $this->view->render("batismo/listar", [
             "title" => "Minha CEM | " . SITE['name'],
-            "members" => $members
+            "batismo" => $batismo
         ]);
     }
 
@@ -48,7 +50,7 @@ class CemController extends Controller
             "type" => "success",
             "message" => "Registro alterado com sucesso!"
         ]);
-        
+
         echo $this->view->render("cem/teste", [
             "title" => "Minha CEM | " . SITE['name']
 
@@ -72,45 +74,45 @@ class CemController extends Controller
                 "type" => "success",
                 "message" => "Registro alterado com sucesso!"
             ]);
-           return;
+            return;
         } else {
             $this->ajaxResponse("message", [
                 "type" => "error",
                 "message" => "Não foi possivel alterar!"
             ]);
-           return;
+            return;
         }
     }
 
 
     public function adicionar($data): void
     {
-       
+
         $criar = $this->update_create($data, "create");
         if ($criar) {
             $this->ajaxResponse("message", [
                 "type" => "success",
                 "message" => "Membro cadastrado com sucesso!"
             ]);
-           return;
+            return;
         } else {
             $this->ajaxResponse("message", [
                 "type" => "error",
                 "message" => "Não foi possivel cadastrar!"
             ]);
-           return;
+            return;
         }
     }
 
     public function update_create($data, $func): bool
-    { 
+    {
         $member = (new MembersModel())->findById($data['idmembros']);
 
         $jobData = filter_var_array($data, FILTER_SANITIZE_STRING);
-       
+
         $member->nome = $jobData["nome"];
         $member->email = $jobData["email"];
-        $member->nasc =  date("Y-m-d",strtotime(str_replace('/','-',$jobData["nasc"])));
+        $member->nasc =  date("Y-m-d", strtotime(str_replace('/', '-', $jobData["nasc"])));
         $member->cargo = $jobData["cargo"];
         $member->supervisao = $jobData["supervisao"];
         $member->igreja = $jobData["igreja"];

@@ -32,7 +32,7 @@
                 </div>
                 <div class="ibox-content">
                     <div class="ajax_load" style="display: none"></div>
-                    <form class="form-horizontal" id="form_cadEmpresas" action="<?= url('empresa/add') ?>" method="post">
+                    <form class="form-horizontal" id="form_cadEmpresas" action="<?= url('minhacem/add') ?>" method="post">
 
                         <div class="row form-group">
                             <div class="col-2 input-group">

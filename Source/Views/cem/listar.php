@@ -36,7 +36,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table" id="tabelaMerbers">
+                    <table class="table" id="tabelaMembers">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -93,9 +93,10 @@
                 [1, "asc"]
             ], //o primeiro argumento serve pra selecionar a coluna e o segundo para informa se decrecente ou crescente
             "language": {
+
                 "lengthMenu": "Mostrar _MENU_ itens p/ Pág.",
                 "zeroRecords": "Não foi possivel encontrar nenhum registro",
-                "info": "Exibindo _PAGE_ de _PAGES_",
+                "info": "Exibindo _PAGE_ de _PAGES_ - Total de _TOTAL_ registros",
                 "infoEmpty": " ",
                 "infoFiltered": "",
                 "paginate": {
@@ -107,7 +108,7 @@
 
         });
 
-       
+
 
         $("body").on("click", "[data-action]", function(e) {
             e.preventDefault();

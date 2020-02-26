@@ -2,6 +2,7 @@
 
 namespace Source\Controllers;
 
+use Source\Models\MembersModel;
 use Source\Models\UserModel;
 
 class App extends Controller
@@ -22,6 +23,10 @@ class App extends Controller
 
     public function home(): void
     {
+        $cem = $_SESSION["cem"];
+       
+        $members = (new MembersModel())->find("supervisao = :name", "name={$cem}")->count();
+
          $head = $this->seo->optimize(
             "Bem vind@ {$this->user->Nome} | ". site("name"), //title
             site("desc"), //descrição
@@ -32,7 +37,8 @@ class App extends Controller
         echo $this->view->render("theme/dashboard", [
              "head" => $head ,
              "user" => $this->user,
-             "title" => "DashBoard"
+             "title" => "Dashboard | " . SITE['name'],
+             "members" => $members
         ]);
     }
 
@@ -44,5 +50,10 @@ class App extends Controller
         flash("info", "Você saiu com sucesso, volte logo {$this->user->Nome}");
 
         $this->router->redirect("web.login");
+    }
+
+    
+    public function informaGeral(){
+        
     }
 }
