@@ -5,22 +5,18 @@ $(function () {
         var form = $(this);
         var action = form.attr("action");
         var data = form.serialize();
-        console.log(action);
-        $.ajax({
+               $.ajax({
             url: action,
             data: data,
             type: "post",
             dataType: "json",
             beforeSend: function (load) {
                 ajax_load("open");
-                console.log("antes");
+               // console.log("antes");
             },
             success: function (su) {
                 ajax_load("close");
-                console.log("sucesso");
-
-                if (su.message) {
-                    console.log(su.message);
+                   if (su.message) {
                     var view = '<div class="message ' + su.message.type + '">' + su.message.message + '</div>';
                     $(".login_form_callback").html(view);
                     $(".message").effect("bounce");

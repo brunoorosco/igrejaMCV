@@ -37,7 +37,6 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                     <div class="ajax_load" style="display: none"></div> 
                     <div class="login_form_callback">
                         <?= flash(); ?>
                     </div>

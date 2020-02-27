@@ -22,10 +22,10 @@ class CemModel extends DataLayer
     
     public function buscarEmpresa($nome)
     {
-         $sql = "select * from tbl_empresas where CNPJ={$nome['cnpj']}";
-         $result = Db::query($sql);
-         $empresa = $result[0];
-         return json_encode($empresa);
+        //  $sql = "select * from tbl_empresas where CNPJ={$nome['cnpj']}";
+        //  $result = Db::query($sql);
+        //  $empresa = $result[0];
+        //  return json_encode($empresa);
         //return (new Empresa())->find("CNPJ = :nome","nome={$nome}")->fetch(false);
     }
    

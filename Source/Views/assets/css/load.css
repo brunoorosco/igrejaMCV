@@ -26,9 +26,9 @@
     width: 80px;
     height: 80px;
 
-    -webkit-animation: spin 5.2s linear infinite;
-    -o-animation: spin 5.2s linear infinite;
-    animation: spin 5.2s linear infinite;
+    -webkit-animation: spin 1.2s linear infinite;
+    -o-animation: spin 1.2s linear infinite;
+    animation: spin 1.2s linear infinite;
 }
 
 .ajax_load_box_title {

@@ -28,7 +28,7 @@ function asset(string $param, $time = true): string
     return $file;
 }
 
-function flash(string $type = null, string $message = null ) 
+function flash(string $type = null, string $message = null)
 {
     if ($type && $message) {
         $_SESSION["flash"] = [
