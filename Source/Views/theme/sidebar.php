@@ -16,11 +16,8 @@
   <!-- Toastr style -->
   <link href="<?= asset('css/plugins/toastr/toastr.min.css') ?>" rel="stylesheet">
 
-  <!-- Gritter -->
-  <link href="<?= asset('js/plugins/gritter/jquery.gritter.css') ?>" rel="stylesheet">
-
-  <link href="<?= asset('css/animate.css') ?>" rel="stylesheet">
   <?= $v->section("css"); ?>
+
   <title><?= $v->e($title) ?></title>
 </head>
 
