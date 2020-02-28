@@ -5,19 +5,21 @@ $(function () {
         var form = $(this);
         var action = form.attr("action");
         var data = form.serialize();
-               $.ajax({
+        
+        $.ajax({
             url: action,
             data: data,
             type: "post",
             dataType: "json",
             beforeSend: function (load) {
-                ajax_load("open");
-               // console.log("antes");
+                // ajax_load("open");
+                alert("antes");
             },
             success: function (su) {
+                alert("chegou");
                 ajax_load("close");
-                   if (su.message) {
-                    var view = '<div class="message ' + su.message.type + '">' + su.message.message + '</div>';
+                if (su.message) {
+                    var view = '<div class="message ' + su.type + '">' + su.message + '</div>';
                     $(".login_form_callback").html(view);
                     $(".message").effect("bounce");
                     return;
@@ -26,6 +28,9 @@ $(function () {
                 if (su.redirect) {
                     window.location.href = su.redirect.url;
                 }
+            },
+            error: function(req, status, code){
+                alert("erro: "+ req + "status: " + code)
             }
         });
 

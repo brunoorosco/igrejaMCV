@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href="<?= asset('Favicon.ico') ?>" type="image/x-icon">
+  <link rel="shortcut icon" href="<?= asset('img/Favicon.ico') ?>" type="image/x-icon">
   <link href='<?= asset('bootstrap/css/bootstrap.min.css') ?>' rel="stylesheet">
   <link href='<?= asset('font-awesome/css/font-awesome.css') ?>' rel="stylesheet">
   <link href="<?= asset('css/sidebar.css') ?>" rel="stylesheet">
@@ -90,6 +90,23 @@
               </li>
             <?php endif; ?>
 
+            <?php if ($_SESSION['userJob'] == 1) : ?>
+              <li class="sidebar-dropdown">
+                <a href="#">
+                  <i class="fa fa-archive"></i>
+                  <span>Secretária Encontro</span>
+                </a>
+                <div class="sidebar-submenu">
+                  <ul>
+                    <li><a href="<?= url("batismo"); ?>">Encontristas</a></li>
+                    <li><a href="<?= url("cursos"); ?>">Encontros</a></li>
+                    <li><a href="<?= url("cursos"); ?>">Equipe</a></li>
+                    <li><a href="<?= url("cursos"); ?>">Entrada/Saída $$$</a></li>
+                  </ul>
+                </div>
+              </li>
+            <?php endif; ?>
+
 
             <li class="sidebar-dropdown">
               <a href="#">
@@ -100,12 +117,9 @@
               <div class="sidebar-submenu">
                 <ul>
                   <li><a href="<?= url("minhacem"); ?>">Membros</a></li>
+                  <li><a href="<?= url("minhacem"); ?>">Casa de Paz</a></li>
                   <li><a href="<?= url("empresa/add"); ?>">Discipulado</a></li>
                   <li><a href="<?= url("func/add"); ?>">Escola de Profeta</a></li>
-                  <li><a href="#">Normas</a> </li>
-                  <li><a href="../produtos/" class="lk_lista">Produtos</a></li>
-                  <li><a href="../ensaios/" class="lk_lista">Tipos de Ensaios</a></li>
-                  <li><a href="../tiposTecido/" class="lk_lista">Tipos de Tecidos</a></li>
                 </ul>
               </div>
             </li>
@@ -117,14 +131,10 @@
               </a>
               <div class="sidebar-submenu">
                 <ul>
-                  <li><a href="<?= url("minhacem"); ?>">Membros da CEM</a></li>
+                  <li><a href="<?= url("eventos/list"); ?>">Eventos</a></li>
                   <li><a href="<?= url("igreja"); ?>">Igrejas</a></li>
                   <li><a href="<?= url("cem"); ?>">CEM's</a></li>
                   <li><a href="<?= url("equipamento"); ?>">Equipamentos</a></li>
-                  <li><a href="<?= url("func"); ?>">Funcionários</a></li>
-                  <li><a href="<?= url("atendimento/plano"); ?>">Plano de Atendimento</a></li>
-                  <li><a href="<?= url("norma"); ?>">Normas</a></li>
-                  <li><a href="<?= url("orcamento"); ?>">Orçamentos</a></li>
                   <li>
                     <a href="#">Outros</a>
                   </li>
@@ -175,22 +185,7 @@
                 </ul>
               </div>
             </li>
-            <li class="sidebar-dropdown">
-              <a href="#">
-                <i class="fa fa-globe"></i>
-                <span>Maps</span>
-              </a>
-              <div class="sidebar-submenu">
-                <ul>
-                  <li>
-                    <a href="#">Google maps</a>
-                  </li>
-                  <li>
-                    <a href="#">Open street map</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
+
             <li class="header-menu">
               <span class="text-black-50">Extra</span>
             </li>
@@ -203,13 +198,7 @@
             <li>
               <a href="#">
                 <i class="fa fa-calendar"></i>
-                <span>Calendar</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-folder"></i>
-                <span>Examples</span>
+                <span>Calendário Anual</span>
               </a>
             </li>
           </ul>
@@ -235,7 +224,10 @@
         </a>
       </div>
     </nav>
+    <!-- <nav class="navbar navbar-dark bg-dark" style="margin-left: 250px">
+      <a class="navbar-brand" href="#"><?= $_SESSION['userName'] ?></a>
 
+    </nav> -->
     <!-- sidebar-wrapper  -->
     <main class="page-content">
       <div class="ajax_load">

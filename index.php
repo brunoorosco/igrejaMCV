@@ -111,12 +111,13 @@ $route->post("/add", "cemController:adicionar");
  * NormaController
  * acesso responsavel pelas normas 
  */
-$route->group("/ensaio");
-$route->get("/","EnsaioController:ensaios");
-$route->post("/add","EnsaioController:adicionar");
-$route->get("/editar/{id}","EnsaioController:editar");
-$route->post("/edit","EnsaioController:atualizar");
-$route->post("/excluir","EnsaioController:excluir");
+$route->group("/encontro");
+$route->get("/","EncontroController:ensaios","encontrocontroller.ensaios");
+$route->get("/editar/{id}","EncontroController:editar","encontrocontroller.ensaios");
+
+$route->post("/add","EncontroController:adicionar");
+$route->post("/edit","EncontroController:atualizar");
+$route->post("/excluir","EncontroController:excluir");
 
 
 /**

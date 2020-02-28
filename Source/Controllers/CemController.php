@@ -68,15 +68,15 @@ class CemController extends Controller
        // var_dump($atualizar);
         //if ($empresa->save()) {
         if ($atualizar) {
-            // $this->ajaxResponse("message", [
-            //     "type" => "success",
-            //     "message" => "Registro alterado com sucesso!"
-            // ]);
-            // return;
+            $this->ajaxResponse("message", [
+                "type" => "success",
+                "message" => "Registro alterado com sucesso!"
+            ]);
+            return;
 
-            flash("success", "Atualizado com sucesso!");
+           // flash("success", "Atualizado com sucesso!");
         // $callback["message"] = "Equipamento cadastrada com sucesso!";
-        // $callback["action"] = "success";
+        // $callback["type"] = "success";
         // echo json_encode($callback);
         } else {
         //     $this->ajaxResponse("message", [

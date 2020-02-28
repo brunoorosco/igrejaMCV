@@ -90,7 +90,7 @@
                                     </div>
 
                                     <div class="col-2">
-                                        <span id="" class="texto">Número</span>
+                                        <span id="" class="texto">Nº</span>
                                         <input type="text" name="numero" maxlength="10" class="form-control" id="txt_numero" value="<?= $member->numero  ?>" />
                                     </div>
                                 </div>
