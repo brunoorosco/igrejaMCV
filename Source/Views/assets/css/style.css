@@ -2455,18 +2455,7 @@ label.error {
   margin-top: 30px;
   color: inherit;
 }
-.inspinia-notify.alert-warning {
-  border-left: 6px solid #f8ac59;
-}
-.inspinia-notify.alert-success {
-  border-left: 6px solid #1c84c6;
-}
-.inspinia-notify.alert-danger {
-  border-left: 6px solid #ed5565;
-}
-.inspinia-notify.alert-info {
-  border-left: 6px solid #1ab394;
-}
+
 /* Image cropper style */
 .img-container,
 .img-preview {

@@ -18,7 +18,7 @@ class Auth extends Controller
      
         if (!$email || !$passwd) {
             echo $this->ajaxResponse("message", [
-                "type" => "alert",
+                "type" => "atencion",
                 "message" => "Informe seu e-mail e senha para logar"
             ]);
             return;
@@ -29,7 +29,7 @@ class Auth extends Controller
          //if (!$user || !password_verify($passwd, $user->passwd)) {
         if (!$user ||  $passwd != $user->password) {
             echo $this->ajaxResponse("message", [
-                "type" => "alert",
+                "type" => "atencion",
                 "message" => "E-mail ou senha não conferem!"
                // "message" => $user->password
             ]);

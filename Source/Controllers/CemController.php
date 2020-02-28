@@ -27,7 +27,7 @@ class CemController extends Controller
     public function cem($data): void
     {
         $cem =  $_SESSION['cem'];
-        $members = (new MembersModel())->find("supervisao = :c","c={$cem}")->order("nome ASC")->fetch(true);
+        $members = (new MembersModel())->find("supervisao = :c", "c={$cem}")->order("nome ASC")->fetch(true);
         echo $this->view->render("cem/listar", [
             "title" => "Minha CEM | " . SITE['name'],
             "members" => $members
@@ -44,78 +44,58 @@ class CemController extends Controller
 
     public function buscar($data)
     {
-        $this->ajaxResponse("message", [
+        echo $this->ajaxResponse("message", [
             "type" => "success",
             "message" => "Registro alterado com sucesso!"
         ]);
-        
-        echo $this->view->render("cem/teste", [
-            "title" => "Minha CEM | " . SITE['name']
-
-        ]);
-        //  $empresa = Empresa::buscarEmpresa($data);
-
-        // Decodifica o formato JSON e retorna um Objeto
-        //  $json = json_decode($empresa);
-        //   echo ($empresa);
-        // Loop para percorrer o Objeto
-        // die();
-        //echo $empresa;
+        return;
     }
     public function atualizar($data): void
     {
         $atualizar = $this->update_create($data, "update");
-       // var_dump($atualizar);
-        //if ($empresa->save()) {
+
         if ($atualizar) {
-            $this->ajaxResponse("message", [
+            echo $this->ajaxResponse("message", [
                 "type" => "success",
                 "message" => "Registro alterado com sucesso!"
             ]);
             return;
-
-           // flash("success", "Atualizado com sucesso!");
-        // $callback["message"] = "Equipamento cadastrada com sucesso!";
-        // $callback["type"] = "success";
-        // echo json_encode($callback);
         } else {
-        //     $this->ajaxResponse("message", [
-        //         "type" => "error",
-        //         "message" => "Não foi possivel alterar!"
-        //     ]);
-        //    return;
+            echo  $this->ajaxResponse("message", [
+                "type" => "error",
+                "message" => "Não foi possivel alterar!"
+            ]);
+            return;
         }
     }
 
-
     public function adicionar($data): void
     {
-       
         $criar = $this->update_create($data, "create");
         if ($criar) {
-            $this->ajaxResponse("message", [
+           echo $this->ajaxResponse("message", [
                 "type" => "success",
                 "message" => "Membro cadastrado com sucesso!"
             ]);
-           return;
+            return;
         } else {
-            $this->ajaxResponse("message", [
+            echo $this->ajaxResponse("message", [
                 "type" => "error",
                 "message" => "Não foi possivel cadastrar!"
             ]);
-           return;
+            return;
         }
     }
 
     public function update_create($data, $func): bool
-    { 
+    {
         $member = (new MembersModel())->findById($data['idmembros']);
 
         $jobData = filter_var_array($data, FILTER_SANITIZE_STRING);
-       
+
         $member->nome = $jobData["nome"];
         $member->email = $jobData["email"];
-        $member->nasc =  date("Y-m-d",strtotime(str_replace('/','-',$jobData["nasc"])));
+        $member->nasc =  date("Y-m-d", strtotime(str_replace('/', '-', $jobData["nasc"])));
         $member->cargo = $jobData["cargo"];
         $member->supervisao = $jobData["supervisao"];
         $member->igreja = $jobData["igreja"];

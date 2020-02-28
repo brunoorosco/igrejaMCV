@@ -8,24 +8,13 @@
     <link rel="shortcut icon" href="<?= asset('img/Favicon.ico') ?>" type="image/x-icon">
     <title><?= $title; ?></title>
   
-    <link href="<?= asset('bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+    <!-- <link href="<?= asset('bootstrap/css/bootstrap.min.css')?>" rel="stylesheet"> -->
     <link rel="stylesheet" href="<?= asset('css/style.css')?>"/>
     <?= $v->section("css"); ?>
 </head>
 
 <body class="login">
-    <nav class="main_nav">
-        <?php if ($v->section("sidebar")) :
-            echo $v->section("sidebar");
-        else :
-            ?>
-            <!-- <a title="" href="<?= url(); ?>">Home</a>
-            <a title="" href="<?= url("contato"); ?>">Contato</a>
-            <a title="" href="<?= url("teste"); ?>">Teste</a> -->
-        <?php
-        endif; ?>
-
-    </nav>
+  
     <main class="main_content">
         <?= $v->section("content"); ?>
     </main>

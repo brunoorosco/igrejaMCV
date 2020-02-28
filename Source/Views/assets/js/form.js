@@ -12,11 +12,11 @@ $(function () {
             type: "post",
             dataType: "json",
             beforeSend: function (load) {
-                // ajax_load("open");
-                alert("antes");
+                ajax_load("open");
+            
             },
             success: function (su) {
-                alert("chegou");
+              
                 ajax_load("close");
                 if (su.message) {
                     var view = '<div class="message ' + su.message.type + '">' + su.message.message + '</div>';

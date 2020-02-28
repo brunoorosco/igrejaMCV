@@ -36,17 +36,19 @@
 }
 
 .form input {
-    width: 100%;
+    width: 70%;
     font-size: 1em;
-    color: #ffffff;
+    color: #000000;
     padding: 15px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.8);
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 255, 255, 0.8);
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     outline: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form input:focus {
@@ -62,6 +64,7 @@
 .form_actions button {
     order: 1;
     outline: none;
+    align-items: center;
 }
 
 .form_actions a {
@@ -88,4 +91,11 @@
 
 .form_register_action p {
     font-size: 0.875em;
+}
+
+.form-fundo{
+    width: 70%;
+    background-color: rgba(50, 50, 50, 0.5);
+    margin: auto;
+
 }
