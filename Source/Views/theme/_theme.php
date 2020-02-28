@@ -9,7 +9,6 @@
     <title><?= $title; ?></title>
   
     <link href="<?= asset('bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
-    <link href="<?= asset('font-awesome/css/font-awesome.css')?>" rel="stylesheet">
     <link rel="stylesheet" href="<?= asset('css/style.css')?>"/>
 </head>
 

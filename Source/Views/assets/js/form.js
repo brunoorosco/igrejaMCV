@@ -19,7 +19,7 @@ $(function () {
                 alert("chegou");
                 ajax_load("close");
                 if (su.message) {
-                    var view = '<div class="message ' + su.type + '">' + su.message + '</div>';
+                    var view = '<div class="message ' + su.message.type + '">' + su.message.message + '</div>';
                     $(".login_form_callback").html(view);
                     $(".message").effect("bounce");
                     return;
