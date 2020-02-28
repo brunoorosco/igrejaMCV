@@ -1,7 +1,7 @@
 <?php $v->layout("theme/_theme"); ?>
 
 <?php $v->start("css"); ?>
-<link href="<?= asset('css/style.css') ?>" rel="stylesheet">
+
 <link href="<?= asset('css/message.css') ?>" rel="stylesheet">
 
 <?php $v->end(); ?>
@@ -42,7 +42,7 @@
 
 
 <?php $v->start("scripts"); ?>
-<script src="<?= asset("js/script.min.js"); ?>"></script>
+
 <script src="<?= asset("js/form.js"); ?>"></script>
 
 <?php $v->end(); ?>

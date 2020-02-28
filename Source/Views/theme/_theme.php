@@ -10,6 +10,7 @@
   
     <link href="<?= asset('bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
     <link rel="stylesheet" href="<?= asset('css/style.css')?>"/>
+    <?= $v->section("css"); ?>
 </head>
 
 <body class="login">
@@ -33,7 +34,8 @@
 
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="<?= asset('js/jquery-3.4.1.js')?>"></script>
+    <script src="<?= asset('js/jquery-ui.min.js')?>"></script>
     <?= $v->section("scripts"); ?>
 </body>
 
