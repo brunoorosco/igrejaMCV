@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="<?= asset('img/Favicon.ico') ?>" type="image/x-icon">
     <title><?= $title; ?></title>
   
-    <!-- <link href="<?= asset('bootstrap/css/bootstrap.min.css')?>" rel="stylesheet"> -->
+    <link href="<?= asset('bootstrap/css/bootstrap.css')?>" rel="stylesheet">
     <link rel="stylesheet" href="<?= asset('css/style.css')?>"/>
     <?= $v->section("css"); ?>
 </head>
@@ -25,6 +25,7 @@
 
     <script src="<?= asset('js/jquery-3.4.1.js')?>"></script>
     <script src="<?= asset('js/jquery-ui.min.js')?>"></script>
+    <script scr="<?= asset('bootstrap/js/bootstrap.min.js')?>"></script>
     <?= $v->section("scripts"); ?>
 </body>
 

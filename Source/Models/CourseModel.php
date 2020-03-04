@@ -3,16 +3,15 @@
 
 namespace Source\Models;
 
-use Db;
 use CoffeeCode\DataLayer\DataLayer;
 
-class CompModel extends DataLayer
+class CourseModel extends DataLayer
 {
     public function __construct()
     {
         //parent::__construct("tbl_empresas", ["CodigoCliente", "Nome","Endereco","Numero","CNPJ","Contato", 
         // "Email", "Telefone", "Ie","CEP","Fax","Ramal","Bairro","Cidade","Estado","Sgset","Status","CPF","Telefone2","Celular"], "Codigo");
-        parent::__construct("composicoes", ["Nome", "Status"], "Codigo",false);
+        parent::__construct("infocursos", ["nomeCursos", "tema","data_"], "idCursos",false);
     }
     // /**Executa pesquisa das ordens de serviço da empresa escolhida */
     // public function OsEmpresa()

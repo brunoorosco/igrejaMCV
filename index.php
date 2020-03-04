@@ -74,14 +74,14 @@ $route->put("/edit/{id}", "CompController:editar");
 
 /**
  * controller: Composicao
- * BATISMO
+ * CURSO
  */
 ////GET
-$route->group("/curso");
+$route->group("/cursos");
 $route->get("/", "CourseController:list", "coursecontroller.list");
 $route->get("/add", "CourseController:new", "coursecontroller.new");
 ////POST
-$route->group("/batismo");
+$route->group("/cursos");
 $route->post("/add", "CourseController:adicionar", "coursecontroller.adicionar");
 $route->post("/excluir", "CourseController:excluir", "coursecontroller.excluir");
 ///PUT
