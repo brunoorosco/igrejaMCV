@@ -5,7 +5,7 @@ namespace Source\Models;
 
 use CoffeeCode\DataLayer\DataLayer;
 
-class EventosModel extends DataLayer
+class EventoModel extends DataLayer
 {
     public function __construct()
     {

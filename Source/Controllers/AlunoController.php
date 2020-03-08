@@ -5,9 +5,10 @@ namespace Source\Controllers;
 use Source\Models\CourseModel;
 use Source\Models\UserModel;
 use Source\Models\AlunoModel;
+use Source\Models\HistoricoModel;
 use Source\Models\MembersModel;
 
-class CourseController extends Controller
+class AlunoController extends Controller
 {
     /** @var UserModal   */
     protected $user;
@@ -130,18 +131,21 @@ class CourseController extends Controller
         echo json_encode($callback);
     }
 
-    public function alunos($data)
+    /**
+     * FUNÇÃO DE ATUALIZAÇÃO DOS ID DO HISTORICO DO ALUNO
+     * A ATUALIZAÇÃO É REALIZADA MANUALMENTE PARA QUE OS 
+     * NOVOS MEMBROS TENHAM SEUS CERTIFICADOS PUXADOS SE JÁ CADASTRADO
+     */
+    public function updateDb()
     {
-        $alunos = (new AlunoModel())->find("idcurso= :c", "c={$data['curso']}")->fetch(true);
+        $alunos = (new HistoricoModel())->find()->fetch(true);
+        $membro = new MembersModel();
 
         foreach ($alunos as $aluno) {
-            if (!$aluno->idmembro == null) {
-                $membro = (new MembersModel())->findById($aluno->idmembro);
-                var_dump($membro->nome);
-                echo "<hr>";
-            } else {
-                var_dump($aluno->nome);
-                echo " | não cadastrado";
+            $studant = $membro->find("nome = :n", "n={$aluno->nome}")->fetch();
+            $aluno->membroCad = $studant->idmembros;
+            if ($aluno->membroCad != null && $aluno->save()) {
+                echo $aluno->membroCad;
                 echo "<hr>";
             }
         }

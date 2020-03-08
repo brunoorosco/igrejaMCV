@@ -32,6 +32,13 @@ $route->group("/app");
 $route->get("/", "App:home","app.home");
 $route->get("/sair", "App:logoff","app.logoff");
 
+/**
+ * Alunos
+ */
+$route->group("/aluno");
+$route->get("/update", "AlunoController:updateDb","alunocontroller.updatedb");
+//$route->get("/sair", "AlunoController:logoff","app.logoff");
+
 
 /**
  * web
@@ -80,6 +87,7 @@ $route->put("/edit/{id}", "CompController:editar");
 $route->group("/cursos");
 $route->get("/", "CourseController:list", "coursecontroller.list");
 $route->get("/add", "CourseController:new", "coursecontroller.new");
+$route->get("/{curso}/alunos","CourseController:alunos","coursecontroller.alunos");
 ////POST
 $route->group("/cursos");
 $route->post("/add", "CourseController:adicionar", "coursecontroller.adicionar");

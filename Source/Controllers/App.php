@@ -56,4 +56,6 @@ class App extends Controller
     public function informaGeral(){
         
     }
+
+    
 }

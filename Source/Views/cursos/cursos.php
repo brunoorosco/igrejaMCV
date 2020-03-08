@@ -3,6 +3,7 @@
 <?php $v->start("css"); ?>
 <link href="<?= asset('css/message.css') ?>" rel="stylesheet">
 <link href="<?= asset('css/dashboard.css') ?>" rel="stylesheet">
+<link rel="stylesheet" href="<?= asset('css/datatables.css'); ?>">
 
 <?php $v->end(); ?>
 
@@ -77,7 +78,7 @@
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table" id="tabelaMembers">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -100,10 +101,14 @@
 
                                     <td class="text-left">
 
-                                        <a data-action="<?= url("minhacem/edit") ?>" data-id=<?= $course->idmembros ?> data-func="edit">
+                                        <a data-action="<?= url("cursos/alunos") ?>" data-id="<?= $course->idCursos ?>" data-func="edit">
+                                            <i class="fa fa-graduation-cap text-navy"></i>
+                                        </a>
+
+                                        <a data-action="<?= url("cursos/edit") ?>" data-id="<?= $course->idCursos ?>" data-func="edit">
                                             <i class="fa fa-pencil text-navy"></i>
                                         </a>
-                                        <a data-action="<?= url("minhacem/excluir") ?>" data-id=<?= $course->idmembros ?> data-nome=<?= $course->nome ?> data-func="exc">
+                                        <a data-action="<?= url("cursos/excluir") ?>" data-id="<?= $course->idCursos ?>" data-nome="<?= $course->nomeCursos ?>" data-func="exc">
                                             <i class="fa fa-trash text-navy"></i>
                                         </a>
 
@@ -123,3 +128,8 @@
 </div>
 <p><a class="btn btn-green" href="<?= $router->route("app.logoff"); ?>" title="Sair agora">SAIR AGORA :)</a></p>
 </div>
+
+<?php $v->start("js"); ?>
+<script src="<?= asset('js/datatables.min.js') ?>"></script>
+<script src="<?= asset('js/tabela.js') ?>"></script>
+<?php $v->end(); ?>
