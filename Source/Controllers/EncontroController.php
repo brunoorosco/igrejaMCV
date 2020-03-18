@@ -8,7 +8,7 @@ use Source\Models\EncontroModel;
 use Source\Models\EncontristaModel;
 
 
-class EnsaioController extends Controller
+class EncontroController extends Controller
 {
     public function __construct($router)
     {
@@ -21,13 +21,31 @@ class EnsaioController extends Controller
         }
     }
 
-    public function ensaios($ensaio): void
+    public function encontros($enc): void
     {
-        $ensaios = (new EncontroModel())->find()->fetch(true);
+        $cem = $_SESSION["cem"];
+       
+        //$n_encontro = (new EncontroModel())->find()->limit(1)->order("n_encontro DESC")->fetch(false);
 
-        echo $this->view->render("../ensaio/ensaio", [
-            "title" => "Ensaios  | " . SITE['name'],
-            "ensaios" => $ensaios,
+        $encontristas =  (new EncontroModel())->find("n_encontro = :enc", "enc= {$enc['id']}")->fetch(true);
+        
+       // $encontrista = (new EncontristaModel())->find("CEM = :c ","c= {$cem}")->fetch(true);
+
+        //var_dump($encontrista);
+     
+        foreach ($encontristas as $encontrista) {
+             $info_encontrista = (new EncontristaModel())->findById($encontrista->encontrista);
+            if ($info_encontrista->CEM === $cem) {
+                 $members[] = $info_encontrista->data();
+        //   var_dump(  $info_encontrista);
+            }
+            
+        }
+
+        echo $this->view->render("encontro/encontro", [
+            "title" => "Encontro  | " . SITE['name'],
+            "encontristas" => $members,
+
 
 
         ]);

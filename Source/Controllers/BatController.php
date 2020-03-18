@@ -2,7 +2,7 @@
 
 namespace Source\Controllers;
 
-use Source\Models\EventosModel;
+use Source\Models\EventoModel;
 use Source\Models\UserModel;
 use Source\Models\MembersModel;
 
@@ -26,7 +26,7 @@ class BatController extends Controller
 
     public function list(): void
     {   $bat = "Batizado";    
-        $batismo = (new EventosModel())->find("titulo = :t","t={$bat}")->fetch(true);
+        $batismo = (new EventoModel())->find("titulo = :t","t={$bat}")->fetch(true);
         
        
      //  $batismo = (new BatModel())->find("cem = :c", "c={$bat}")->order("nome ASC")->fetch(true);

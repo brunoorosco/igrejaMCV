@@ -120,8 +120,8 @@ $route->post("/add", "cemController:adicionar");
  * acesso responsavel pelas normas 
  */
 $route->group("/encontro");
-$route->get("/","EncontroController:ensaios","encontrocontroller.ensaios");
-$route->get("/editar/{id}","EncontroController:editar","encontrocontroller.ensaios");
+$route->get("/{id}","EncontroController:encontros","encontrocontroller.encontros");
+$route->get("/editar/{id}","EncontroController:editar","encontrocontroller.editar");
 
 $route->post("/add","EncontroController:adicionar");
 $route->post("/edit","EncontroController:atualizar");

@@ -25,14 +25,14 @@
             </div>
             <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
                 <div class="widget-box cursor-pointer">
-                    <a href="" class="widget-box__link" target="">
+                    <a href="<?= url("encontro/{$encontro}") ?>" class="widget-box__link" target="">
                         <div class="widget-box__content">
 
                             <span class="widget-box__subtitle text-center">
-                                <span>Encontro Nº</span>
+                                <span>Encontro Nº <?= $encontro ?></span>
                             </span>
                             <span class="widget-box__counter text-center">
-                                <span>000</span>
+                                <span><?= $encontrista ?></span>
                             </span>
                         </div>
                     </a>
