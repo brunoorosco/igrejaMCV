@@ -6,6 +6,7 @@ $(function () {
             "zeroRecords": "Não foi possivel encontrar nenhum registro",
             "info": "Exibindo _PAGE_ de _PAGES_",
             "infoEmpty": " ",
+            "sSearch": "Pesquisar",
             "infoFiltered": "",
             "paginate": {
                 "previous": "Anterior",
@@ -57,14 +58,15 @@ $("body").on("click", "[data-action]", function(e) {
                     $.ajax({
                         url: data.action,
                         data: data,
-                        type: 'POST',
+                        type: 'DELETE',
 
                     }).done(function(resp) {
+                        console.log(resp);
 
                         tr.fadeOut('slow', function() {});
 
                     }).fail(function(resp) {
-
+                       
                     })
                 }
             })

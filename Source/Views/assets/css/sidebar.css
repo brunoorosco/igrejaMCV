@@ -1,3 +1,8 @@
+.page-content{
+  margin: 0;
+  padding: 0;
+}
+
 @keyframes swing {
     0% {
       transform: rotate(0deg);
@@ -354,15 +359,15 @@
   /*--------------------------page-content-----------------------------*/
   
   .page-wrapper .page-content {
-    display: inline-block;
+    /* display: inline-block;
     width: 100%;
     padding-left: 0px;
-    padding-top: 20px;
+    padding-top: 20px; */
   }
   
-  .page-wrapper .page-content > div {
+  /* .page-wrapper .page-content > div {
     padding: 20px 40px;
-  }
+  } */
   
   .page-wrapper .page-content {
     overflow-x: hidden;
@@ -485,4 +490,34 @@
   .ibox-tools {
     text-align: right;
     margin-bottom: 10px;
+  }
+
+  .page-content header{ 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+.page-content header a.button{
+    cursor: pointer;
+    width: 50px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid #e6e0dc;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 700;
+    margin-top: 16px;
+    margin-right: 10px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 40px;
+    transition: opacity 0.2s;
+}
+
+  .page-content header a.button:hover {
+    opacity: 80%;
   }

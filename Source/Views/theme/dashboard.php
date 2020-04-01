@@ -86,10 +86,35 @@
                 </div>
             </div>
             <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
+                <div class="widget-box cursor-pointer">
+                    <a href="<?= url("cem/add"); ?>" class="widget-box__link" >
+                        <div class="widget-box__content">
+
+                            <span class="widget-box__subtitle text-center">
+                                <span>Cadastrar</span>
+                            </span>
+                            <span class="widget-box__counter text-center">
+                                <span>Novo Membro</span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
 
             </div>
             <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
+            <div class="widget-box cursor-pointer">
+                    <a href="/hosting/secretariacac.com/order/order-usage" class="widget-box__link" target="">
+                        <div class="widget-box__content">
 
+                            <span class="widget-box__subtitle text-center">
+                                <span>Cadastrar</span>
+                            </span>
+                            <span class="widget-box__counter text-center">
+                                <span>Casa de Paz</span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
             </div>
             <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
 

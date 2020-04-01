@@ -6,6 +6,10 @@
 
 <?php $v->end(); ?>
 
+<?php $v->start("php") ?>
+<button class="">Novo Encontro</button>
+<?php $v->end(); ?>
+
 <div class="container-fluid">
     <div class="ajax_load"></div>
 
@@ -15,24 +19,6 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Encontrista</h5>
-
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#">Config option 1</a>
-                            </li>
-                            <li><a href="#">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
                 </div>
                 <div class="ibox-content">
 
@@ -48,11 +34,11 @@
                         </thead>
                         <tbody>
                             <?php
-                          
+
                             foreach ($encontristas as $member) :
-                             
+
                             ?>
-                                       
+
                                 <tr>
                                     <td class="text-left" scope="row"><?= $member->idEncontrista ?></td>
                                     <td class="text-left" scope="row"><?= $member->nomeEnc ?></td>

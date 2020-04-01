@@ -2,10 +2,10 @@
 
 namespace Source\Controllers;
 
-use Source\Models\CompModel;
+use Source\Models\IgrejaModel;
 use Source\Models\UserModel;
 
-class CompController extends Controller
+class IgrejaController extends Controller
 {
     public function __construct($router)
     {
@@ -18,19 +18,19 @@ class CompController extends Controller
         }
     }
 
-    public function home($email):void
+    public function index($igreja):void
     {  
        // echo $email;
        //$user = User::login($email,$senha);
-       $comps = (new CompModel())->find()->fetch(true);
+       $igrejas = (new IgrejaModel())->find()->fetch(true);
       // var_dump($comps);
-       echo $this->view->render("../composicao/listar",[
-           "title" => "Composições | ". SITE['name'],
-           "composicoes" => $comps
+       echo $this->view->render("igreja/index",[
+           "title" => "Igrejas | ". SITE['name'],
+           "igrejas" => $igrejas
            
        ]);
     }
-    public function adicionar($email):void
+    public function create($igreja):void
     {  
        // echo $email;
        //$user = User::login($email,$senha);
@@ -41,7 +41,7 @@ class CompController extends Controller
        ]);
     }
 
-    public function editar($data):void
+    public function edit($igreja):void
     {
       // $users = (new User())->find()->fetch(true);
        echo $this->view->render("login/login",[
@@ -50,12 +50,12 @@ class CompController extends Controller
        ]);
     }
 
-    public function excluir($data):void
+    public function delete($data):void
     {
         if (empty($data["id"])) return;
 
         $id = filter_var($data["id"], FILTER_VALIDATE_INT);
-        $equip = (new CompModel())->findById($id);
+        $equip = (new IgrejaModel())->findById($id);
         var_dump($equip);
         if ($equip) {
             $equip->destroy();

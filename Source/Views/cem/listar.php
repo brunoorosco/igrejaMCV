@@ -6,10 +6,12 @@
 
 <?php $v->end(); ?>
 
-<div class="container-fluid">
-    <div class="ajax_load"></div>
+<?php $v->start("php")?>
+        <a type="button" class="btn btn-primary">Novo</a>
+<?php $v->end(); ?>
 
-    <div class="row">
+<div class="container-fluid">
+       <div class="row">
         <div class="col-lg-12">
 
             <div class="ibox float-e-margins">
@@ -85,89 +87,6 @@
 <script src="<?= asset('js/sweetalert.min.js') ?>"></script>
 <script src="<?= asset('js/datatables.min.js') ?>"></script>
 <script src="<?= asset('js/load.js') ?>"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#tabelaMembers').DataTable({
-            "order": [
-                [1, "asc"]
-            ], //o primeiro argumento serve pra selecionar a coluna e o segundo para informa se decrecente ou crescente
-            "language": {
-
-                "lengthMenu": "Mostrar _MENU_ itens p/ Pág.",
-                "zeroRecords": "Não foi possivel encontrar nenhum registro",
-                "info": "Exibindo _PAGE_ de _PAGES_ - Total de _TOTAL_ registros",
-                "infoEmpty": " ",
-                "infoFiltered": "",
-                "paginate": {
-                    "previous": "Anterior",
-                    "next": "Próximo",
-
-                }
-            },
-
-        });
-
-
-
-        $("body").on("click", "[data-action]", function(e) {
-            e.preventDefault();
-            var data = $(this).data();
-            var div = $(this).parent().parent();
-
-            var tr = $(this).closest('tr');
-            var id = $(this).data('id');
-
-            var func = $(this).data('func');
-            // console.log(func);
-            // alert(data.action); //returna -> https://localhost/www/SLAB/empresa/editar
-            if (func === "exc") {
-                swal({
-                        title: "Deseja realmente excluir?",
-                        text: data.nome,
-                        icon: "warning",
-                        buttons: {
-                            cancel: {
-                                text: "Cancel",
-                                value: null,
-                                visible: true,
-                                className: "",
-                                closeModal: true,
-                            },
-                            confirm: {
-                                text: "OK",
-                                value: true,
-                                visible: true,
-                                className: "",
-                                closeModal: true,
-
-                            },
-                        },
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            $.ajax({
-                                url: data.action,
-                                data: data,
-                                type: 'POST',
-
-                            }).done(function(resp) {
-
-                                tr.fadeOut('slow', function() {});
-
-                            }).fail(function(resp) {
-
-                            })
-                        }
-                    })
-            } else {
-                window.location.href = data.action + '/' + data.id;
-            }
-        })
-
-
-    })
-</script>
+<script src="<?= asset('js/tabela.js') ?>"></script>
 
 <?php $v->end(); ?>

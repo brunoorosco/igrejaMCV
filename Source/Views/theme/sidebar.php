@@ -98,10 +98,10 @@
                 </a>
                 <div class="sidebar-submenu">
                   <ul>
-                    <li><a href="<?= url("batismo"); ?>">Encontristas</a></li>
-                    <li><a href="<?= url("cursos"); ?>">Encontros</a></li>
-                    <li><a href="<?= url("cursos"); ?>">Equipe</a></li>
-                    <li><a href="<?= url("cursos"); ?>">Entrada/Saída $$$</a></li>
+                    <li><a href="<?= url("encontrista"); ?>">Encontristas</a></li>
+                    <li><a href="<?= url("encontro"); ?>">Encontros</a></li>
+                    <li><a href="<?= url("equipe"); ?>">Equipe</a></li>
+                    <li><a href="<?= url("caixa"); ?>">Entrada/Saída $$$</a></li>
                   </ul>
                 </div>
               </li>
@@ -132,7 +132,7 @@
               <div class="sidebar-submenu">
                 <ul>
                   <li><a href="<?= url("eventos/list"); ?>">Eventos</a></li>
-                  <li><a href="<?= url("igreja"); ?>">Igrejas</a></li>
+                  <li><a href="<?= url("igrejas"); ?>">Igrejas</a></li>
                   <li><a href="<?= url("cem"); ?>">CEM's</a></li>
                   <li><a href="<?= url("equipamento"); ?>">Equipamentos</a></li>
                   <li>
@@ -230,6 +230,11 @@
     </nav> -->
     <!-- sidebar-wrapper  -->
     <main class="page-content">
+      <!-- <header>
+        <img src="<?= asset('img/logo.jpg') ?>" alt="" width="100px">
+        <?= $v->section("php")?>
+        <a href="<?= $router->route("app.logoff")?>" class="button"><i class="fa fa-power-off" style="color:red"></i></a>
+      </header> -->
       <div class="ajax_load">
         <div class="ajax_load_box">
           <div class="ajax_load_box_circle"></div>

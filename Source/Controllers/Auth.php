@@ -2,6 +2,7 @@
 
 namespace Source\Controllers;
 
+use Source\Models\IgrejaModel;
 use Source\Models\UserModel;
 use Source\Models\MembersModel;
 
@@ -39,8 +40,15 @@ class Auth extends Controller
         $_SESSION["user"] = $user->id;
         $_SESSION["userName"] = $user->username;
         $_SESSION["userJob"] = $user->nivel_acesso;
+     
+        
         $member = (new MembersModel())->find("email = :e", "e={$email}")->fetch(false);
         $_SESSION["cem"] = $member->supervisao;
+
+        $igreja = (new IgrejaModel())->findById(1);
+        echo $_SESSION["cem"];
+        $_SESSION["igreja"] = $igreja->igreja;
+
         echo $this->ajaxResponse("redirect",["url" => $this->router->route("app.home")]);
     }
 

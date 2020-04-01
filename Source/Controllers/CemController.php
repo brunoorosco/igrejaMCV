@@ -42,14 +42,7 @@ class CemController extends Controller
         ]);
     }
 
-    public function buscar($data)
-    {
-        echo $this->ajaxResponse("message", [
-            "type" => "success",
-            "message" => "Registro alterado com sucesso!"
-        ]);
-        return;
-    }
+   
     public function atualizar($data): void
     {
         $atualizar = $this->update_create($data, "update");
@@ -118,15 +111,21 @@ class CemController extends Controller
     }
     public function excluir($data)
     {
+        
         if (empty($data["id"])) return;
 
         $id = filter_var($data["id"], FILTER_VALIDATE_INT);
+       
+        //$member = (new MembersModel())->find("idmembros = :id","id={$id}")->fetch(false);
         $member = (new MembersModel())->findById($id);
-
-        if ($member) {
+       
+        $callback = false;
+        
+        if ( $member ) {
             $member->destroy();
+            $callback = true;
         }
-        $callback = true;
+      
         echo json_encode($callback);
     }
 }

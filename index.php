@@ -98,11 +98,9 @@ $route->put("/edit/{id}", "CourseController:editar", "coursecontroller.editar");
 
 
 $route->group("/minhacem");
-$route->get("/", "cemController:cem");
-$route->get("/edit/{id}", "cemController:editar", "cemcontroller.editar");
-$route->get("/buscar", "cemController:buscar", "cemcontroller.buscar");
-
-$route->post("/excluir", "cemController:excluir");
+$route->get("/", "cemController:cem");  //index controllerCem
+$route->put("/edit/{id}", "cemController:editar", "cemcontroller.editar");
+$route->delete("/excluir", "cemController:excluir");
 $route->post("/edit", "cemController:atualizar","cemcontroller.atualizar");
 
 /**
@@ -132,13 +130,15 @@ $route->post("/excluir","EncontroController:excluir");
  * controller: Equipamentos
  * Composições
  */
-$route->group("equipamento");
-$route->get("/", "EquipController:todos");
-$route->get("/add", "EquipController:incluir");
-$route->post("/add", "EquipController:adicionar");
-$route->get("/editar/{id}", "EquipController:editar");
-$route->post("/excluir", "EquipController:excluir");
-$route->post("/edit", "EquipController:editar");
+$route->group("igrejas");
+$route->get("/", "IgrejaController:index");
+
+$route->post("/add", "IgrejaController:create");
+
+$route->put("/edit/{id}", "igrejaController:edit");
+
+$route->delete("/excluir", "igrejaController:delete");
+
 /**
  * controller: FuncionarioController
  * Funcionarios

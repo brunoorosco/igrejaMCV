@@ -42,14 +42,7 @@ class CourseController extends Controller
         ]);
     }
 
-    public function buscar($data)
-    {
-        echo $this->ajaxResponse("message", [
-            "type" => "success",
-            "message" => "Registro alterado com sucesso!"
-        ]);
-        return;
-    }
+
     public function atualizar($data): void
     {
         $atualizar = $this->update_create($data, "update");
