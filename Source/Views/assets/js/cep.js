@@ -5,7 +5,7 @@ $(document).ready(function() {
             $("#txt_rua").val("");
             $("#txt_bairro").val("");
             $("#txt_cidade").val("");
-            $("#txt_estado").val("");
+            $("#txt_uf").val("");
         }
       
         //Quando o campo cep perde o foco.
@@ -26,7 +26,7 @@ $(document).ready(function() {
                     $("#txt_rua").val("...");
                     $("#txt_bairro").val("...");
                     $("#txt_cidade").val("...");
-                    $("#txt_estado").val("...");
+                    $("#txt_uf").val("...");
                
 
                     //Consulta o webservice viacep.com.br/
@@ -37,7 +37,7 @@ $(document).ready(function() {
                             $("#txt_rua").val(dados.logradouro);
                             $("#txt_bairro").val(dados.bairro);
                             $("#txt_cidade").val(dados.localidade);
-                            $("#txt_estado").val(dados.uf);
+                            $("#txt_uf").val(dados.uf);
                          
                         } //end if.
                         else {

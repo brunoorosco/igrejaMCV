@@ -3,6 +3,7 @@ ob_start();
 session_start();
 
 require __DIR__ . "/vendor/autoload.php";
+
 use  CoffeeCode\Router\Router;
 
 $route = new Router(url());
@@ -12,16 +13,16 @@ $route->namespace("Source\Controllers");
  * web
  */
 $route->group(null);
-$route->get("/", "Web:login","web.login");
-$route->get("/cadastrar", "Web:register","web.register");
+$route->get("/", "Web:login", "web.login");
+$route->get("/cadastrar", "Web:register", "web.register");
 $route->get("/recuperar", "Web:forget", "web.forget");
 $route->get("/senha/{email}/{forget}", "Web:reset", "web.reset");
 /**
  * Auth
  */
 $route->group(null);
-$route->post("/login", "Auth:login","auth.login");
-$route->post("/register", "Auth:register","auth.register");
+$route->post("/login", "Auth:login", "auth.login");
+$route->post("/register", "Auth:register", "auth.register");
 $route->post("/forget", "Auth:forget", "auth.forget");
 $route->post("/reset", "Auth:reset", "auth.reset");
 
@@ -29,14 +30,14 @@ $route->post("/reset", "Auth:reset", "auth.reset");
  * App
  */
 $route->group("/app");
-$route->get("/", "App:home","app.home");
-$route->get("/sair", "App:logoff","app.logoff");
+$route->get("/", "App:home", "app.home");
+$route->get("/sair", "App:logoff", "app.logoff");
 
 /**
  * Alunos
  */
 $route->group("/aluno");
-$route->get("/update", "AlunoController:updateDb","alunocontroller.updatedb");
+$route->get("/update", "AlunoController:updateDb", "alunocontroller.updatedb");
 //$route->get("/sair", "AlunoController:logoff","app.logoff");
 
 
@@ -45,8 +46,8 @@ $route->get("/update", "AlunoController:updateDb","alunocontroller.updatedb");
  * etiquetas
  */
 $route->group("etiqueta");
-$route->get("/","Atendimento:etiqueta");
-$route->get("/busca","Atendimento:buscaEtiqueta");
+$route->get("/", "Atendimento:etiqueta");
+$route->get("/busca", "Atendimento:buscaEtiqueta");
 
 /**
  * web
@@ -87,7 +88,7 @@ $route->put("/edit/{id}", "CompController:editar");
 $route->group("/cursos");
 $route->get("/", "CourseController:list", "coursecontroller.list");
 $route->get("/add", "CourseController:new", "coursecontroller.new");
-$route->get("/{curso}/alunos","CourseController:alunos","coursecontroller.alunos");
+$route->get("/{curso}/alunos", "CourseController:alunos", "coursecontroller.alunos");
 ////POST
 $route->group("/cursos");
 $route->post("/add", "CourseController:adicionar", "coursecontroller.adicionar");
@@ -97,11 +98,16 @@ $route->put("/edit/{id}", "CourseController:editar", "coursecontroller.editar");
 ////DELETE
 
 
-$route->group("/minhacem");
-$route->get("/", "cemController:cem");  //index controllerCem
-$route->put("/edit/{id}", "cemController:editar", "cemcontroller.editar");
-$route->delete("/excluir", "cemController:excluir");
-$route->post("/edit", "cemController:atualizar","cemcontroller.atualizar");
+$route->group("/membros");
+$route->get("/", "MembersController:index", "memberscontroller.index");  //index controllerCem
+$route->get("/add", "MembersController:create", "memberscontroller.create");  //member create controllerCem
+$route->get("/edit/{id}", "MembersController:editar", "memberscontroller.editar");
+
+
+$route->post("/add", "MembersController:salve", "memberscontroller.salve");  //member create controllerCem
+$route->post("/edit", "MembersController:update", "memberscontroller.update");  //member create controllerCem
+
+$route->delete("/excluir", "MembersController:excluir", "memberscontroller.excluir");
 
 /**
  * webEmpresa
@@ -118,12 +124,12 @@ $route->post("/add", "cemController:adicionar");
  * acesso responsavel pelas normas 
  */
 $route->group("/encontro");
-$route->get("/{id}","EncontroController:encontros","encontrocontroller.encontros");
-$route->get("/editar/{id}","EncontroController:editar","encontrocontroller.editar");
+$route->get("/{id}", "EncontroController:encontros", "encontrocontroller.encontros");
+$route->get("/editar/{id}", "EncontroController:editar", "encontrocontroller.editar");
 
-$route->post("/add","EncontroController:adicionar");
-$route->post("/edit","EncontroController:atualizar");
-$route->post("/excluir","EncontroController:excluir");
+$route->post("/add", "EncontroController:adicionar");
+$route->post("/edit", "EncontroController:atualizar");
+$route->post("/excluir", "EncontroController:excluir");
 
 
 /**
@@ -156,11 +162,11 @@ $route->get("/conta", "FuncionarioController:conta");
  * acesso responsavel pelas normas 
  */
 $route->group("norma");
-$route->get("/","NormaController:normas");
-$route->get("/editar/{id}","NormaController:editar");
-$route->post("/add","NormaController:adicionar");
-$route->post("/edit","NormaController:atualizar");
-$route->post("/excluir","NormaController:excluir");
+$route->get("/", "NormaController:normas");
+$route->get("/editar/{id}", "NormaController:editar");
+$route->post("/add", "NormaController:adicionar");
+$route->post("/edit", "NormaController:atualizar");
+$route->post("/excluir", "NormaController:excluir");
 
 
 

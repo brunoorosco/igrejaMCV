@@ -521,3 +521,8 @@
   .page-content header a.button:hover {
     opacity: 80%;
   }
+
+  
+.fa{
+  cursor: pointer;
+}

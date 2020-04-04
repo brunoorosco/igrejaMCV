@@ -9,7 +9,7 @@ class MembersModel extends DataLayer
 {
     public function __construct()
     {
-         parent::__construct("membros", ["nome","cargo","igreja"], "idmembros", true);
+         parent::__construct("membros", ["nome","cargo","igreja",], "idmembros", true);
     }
 
     // protected function validaEmail(): bool

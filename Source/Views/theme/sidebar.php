@@ -116,10 +116,10 @@
               </a>
               <div class="sidebar-submenu">
                 <ul>
-                  <li><a href="<?= url("minhacem"); ?>">Membros</a></li>
-                  <li><a href="<?= url("minhacem"); ?>">Casa de Paz</a></li>
-                  <li><a href="<?= url("empresa/add"); ?>">Discipulado</a></li>
-                  <li><a href="<?= url("func/add"); ?>">Escola de Profeta</a></li>
+                  <li><a href="<?= url("membros"); ?>">Membros</a></li>
+                  <li><a href="<?= url("minhacem/casadepaz"); ?>">Casa de Paz</a></li>
+                  <li><a href="<?= url("minhacem/discipulado"); ?>">Discipulado</a></li>
+                  <li><a href="<?= url("minhacem/escoladeprofeta"); ?>">Escola de Profeta</a></li>
                 </ul>
               </div>
             </li>

@@ -9,7 +9,7 @@
 
 <div class="page">
     <div class="ajax_load"></div>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row m-0">
             <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
                 <div class="widget-box cursor-pointer">
