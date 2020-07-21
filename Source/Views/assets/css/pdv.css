@@ -1,0 +1,107 @@
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    
+}
+input[type=number] { 
+   -moz-appearance: textfield;
+   appearance: textfield;
+
+}
+
+ 
+
+.pdv{
+    background: #fcfcfc;
+    height: 400px;
+    min-height: 400px;
+}
+
+.pdv  .table-itens{
+ 
+    min-height: 150px;
+}
+
+.pdv .table-desc{
+    background: #c1f5c1;
+   
+}
+
+.pdv table > tbody > tr > td > input{
+    width: 50px;
+    max-width: 100%;
+    border: 1px solid #bbb;
+    text-align: center;
+    padding-right: 10px;
+}
+
+.pdv table > tbody > tr > td > input:focus{
+    outline: none;
+}
+
+.pdv .total-itens{
+    background: #b0d1f0;
+    height: 20px;
+    border-bottom: 1px solid #fff;
+
+}
+.pdv .total-itens input{
+    background: #b0d1f0;
+    height: 19px;
+    border: 1px solid #aaa;
+    width: 4rem;
+    text-align: end;
+}
+.pdv .total-itens input:focus{
+   
+    outline: none;
+}
+
+
+
+.pdv .total-itens .itens{
+   
+    margin-left: -10px;
+    
+}
+.pdv .total-itens .text-end{
+   
+    text-align: end;
+    
+}
+.pdv .total {
+    background: #c1f5c1;
+    font-size: 16px;
+    font-weight: 600;   
+    height: 20px;
+    justify-content: space-between;
+    padding-bottom: 5px;
+  }
+
+.pdv .botoes button{
+    font-weight: 500;
+}
+.pdv .botoes .yellow{
+    background: #e4e709;
+    margin-top: .5rem;
+}
+.pdv .botoes .yellow:hover{
+    background: #babd08;
+}
+.pdv .botoes .roxo{
+    background: #4d004d;
+}
+.pdv .botoes .roxo:hover{
+    opacity: 80%;
+}
+
+.ui-autocomplete {
+    position: absolute !important;
+    z-index: 2150000000 !important;
+    cursor: default;
+    border: 2px solid #ccc;
+    padding: 5px 0;
+    border-radius: 2px;
+    font-size:15px;
+    font-family: 'Oswald', sans-serif;
+}
+

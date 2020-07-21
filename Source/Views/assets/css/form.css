@@ -102,11 +102,12 @@
 
 .form_register_action p {
     font-size: 0.875em;
+ 
 }
 
 .form-fundo{
     width: 60%;
-    background-color: rgba(50, 50, 50, 0.5);
+    background-color: rgba(50, 50, 50, 0.7);
     margin: auto;
     border-radius: 5px;
 

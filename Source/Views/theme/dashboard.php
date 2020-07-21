@@ -8,6 +8,12 @@
 
 <div class="page">
     <div class="container">
+        <nav class="navbar mb-2">
+            <a class="navbar-brand">
+                <h4>Painel de Controle</h4>
+            </a>
+        </nav>
+
         <div class="row m-0">
             <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
                 <div class="widget-box cursor-pointer">
@@ -25,7 +31,7 @@
             </div>
             <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
                 <div class="widget-box cursor-pointer">
-                    <a href="<?= url("encontro/{$encontro}") ?>" class="widget-box__link" target="">
+                    <a href="<?= url("encontrista/{$encontro}") ?>" class="widget-box__link" target="">
                         <div class="widget-box__content">
 
                             <span class="widget-box__subtitle text-center">
@@ -40,14 +46,14 @@
             </div>
             <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
                 <div class="widget-box cursor-pointer">
-                    <a href="" class="widget-box__link" target="">
+                    <a href="<?= url("encontrista/{$reencontro}") ?>" class="widget-box__link" target="">
                         <div class="widget-box__content">
 
                             <span class="widget-box__subtitle text-center">
-                                <span>Reencontro Nº</span>
+                                <span>Reencontro Nº<?= $reencontro ?></span>
                             </span>
                             <span class="widget-box__counter text-center">
-                                <span>000</span>
+                                <span><?= $reencontrista ?></span>
                             </span>
                         </div>
                     </a>
@@ -87,7 +93,7 @@
             </div>
             <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
                 <div class="widget-box cursor-pointer">
-                    <a href="<?= url("membros/add"); ?>" class="widget-box__link" >
+                    <a href="<?= url("membros/add"); ?>" class="widget-box__link">
                         <div class="widget-box__content">
 
                             <span class="widget-box__subtitle text-center">
@@ -102,7 +108,7 @@
 
             </div>
             <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
-            <div class="widget-box cursor-pointer">
+                <div class="widget-box cursor-pointer">
                     <a href="/hosting/secretariacac.com/order/order-usage" class="widget-box__link" target="">
                         <div class="widget-box__content">
 
@@ -121,5 +127,5 @@
             </div>
         </div>
     </div>
-    <p><a class="btn btn-green" href="<?= $router->route("app.logoff"); ?>" title="Sair agora">SAIR AGORA :)</a></p>
+   
 </div>

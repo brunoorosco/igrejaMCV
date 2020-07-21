@@ -3,25 +3,25 @@
 define(
     "SITE",
     [
-        "name" => "#SomosCEM",
+        "name" => "#Comunidade Avivamento em Cristo",
         "desc" => "GESTÃO DE MEMBRESIA COMUNIDADE AVIVAMENTO EM CRISTO",
-        "domain" => "localhost/",
+        "domain" => "192.168.10.105/",
         //"domain" => "slab.sp.senai.br/",
         "locale" => "pt-br",
-        "root" => "http://localhost/newIgreja"
+        "root" => "http://192.168.10.105/newIgreja"
         //"root" => "https://slab.sp.senai.br"
     ]
 );
 
 
-if ($_SERVER["SERVER_NAME"] == "localhost") {
+if ($_SERVER["SERVER_NAME"] == "192.168.10.105") {
     require __DIR__ . "/Minify.php";
 }
 
 
 define("DATA_LAYER_CONFIG", [
     "driver" => "mysql",
-    "host" => "localhost" ,
+    "host" => "192.168.10.105" ,
     "port" => "3306",
     "dbname" => "db_igreja",
     "username" => "brunoorosco",
@@ -59,4 +59,17 @@ define("SOCIAL", [
 /**
  * MAIL CONNECT
  */
-define("MAIL", []);
+define("MAIL", [
+    // "host" =>"smtp.sendgrid.net",
+    // "port" =>"587",
+    // "user" => "apikey",
+    // "passwd" => "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",
+    // "from_name" => "Bruno Orosco",
+    // "from_email" => "secretaria@secretariacac.com"
+    "host" =>"smtp-relay.sendinblue.com",
+    "port" =>"587",
+    "user" => "brunoorosco@gmail.com",
+    "passwd" => "QNgfFw5JZ3nHUEqR",
+    "from_name" => "Bruno Orosco",
+    "from_email" => "secretaria@secretariacac.com"
+]);

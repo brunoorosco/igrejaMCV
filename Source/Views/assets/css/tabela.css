@@ -1,9 +1,4 @@
-
-.card{
-    background-color: transparent !important;
-}
-
-.card-header{
-    font-weight: bold !important;
+.table td{
+    padding: 0.50rem !important;
 }
 

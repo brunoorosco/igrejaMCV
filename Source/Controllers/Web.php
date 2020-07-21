@@ -58,9 +58,11 @@ class Web extends Controller
         )->render(); //transforma tudo em string
 
         echo $this->view->render("theme/forget", [
-            "head" => $head
+            "head" => $head,
+            "title" => "Recuperação Senha"
         ]);
     }
+    
     public function reset($data): void
     {
         $head = $this->seo->optimize(
@@ -74,6 +76,7 @@ class Web extends Controller
             "head" => $head
         ]);
     }
+
     public function error($data): void
     {
         $error = filter_var($data["errcode"], FILTER_VALIDATE_INT);

@@ -1,0 +1,38 @@
+#Atenção
+
+
+ALGUMAS ROTAS PRECISAM SER EXECUTADAS NA MODIFICAÇÃO DO SISTEMA,
+ESTÁ CORREÇÃO ESTÁ RELACIONADA AO BANCO DE BANCO DE DADOS QUE DEIXA DE 
+USAR CHAVE DE ESTRAGEIRA COM NOME E PASSA A USAR OS IDS DAS TABELAS NO
+RELACIONAMENTO.
+
+1º ATUALIZAÇÃO da coluna userID da tabela acessonew, 
+ - primeiro passo inserir a coluna created_at e updated_at nas tabelas acessonew e membros;
+ - desabilitar a função de validação de email e outrow; 
+ - http://localhost/newigreja/atualizar/username;
+ - apagar coluna username;
+transição pega o idmembros da tabela membros e relaciona com o userId;
+já que agora o userid representa o link das tabelas, a coluna username pode ser removida;
+
+
+2º Criar uma tabela Cargo, trocar os itens da tabela cargo, por id da tabela cargo;
+ - http://localhost/newigreja/atualizar/cargo;
+
+3º Inserir na tabela encontrista created_at e updated_at;
+
+
+3º trocar o nome do supervisor ou pastor do membro pelo id que corresponde a cem que ele frequenta;
+
+4º Atualizar o nome da CEM para quando fizer atualização de encontrista e outros não ocorra nenhum erro.
+   para trocar nome da cem pelo id segue alguns links:
+   - http://localhost/newigreja/atualizar/cem (atualiza supervisao cem do membro)
+
+   é preciso criar uma coluna na tabela encontrista com o idCem, idEncontro para que seja possivel a atualização
+   - http://localhost/newigreja/atualizar/encontrista (atualiza cem do encontrista)
+   - http://localhost/newigreja/atualizar/encontro (atualiza encontro do encontrista)
+
+
+5º tirar link das tabelas encontro, info_encontro e encontrista e somente criar uma relação na programação
+do info_encontro com encontrista, inserir coluna idEncontro na tabela encontrista e também a informação da idCEM
+ao vez de nomecem.
+

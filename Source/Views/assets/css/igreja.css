@@ -12,27 +12,26 @@
     position: relative;
 }
 
-.igreja-content ul li button{
-    position: absolute;
-    right: 24px;
-    top: 24px;
-    border: 0;
-    background: transparent;
-}
-.igreja-content ul li button + button{
+.igreja-content ul li a{
     position: absolute;
     right: 40px;
     top: 25px;
     border: 0;
     background: transparent;
 }
+.igreja-content ul li a + a{
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    border: 0;
+    background: transparent;
+}
 
-.igreja-content ul li button:hover{
-    opacity: 0.8;
+.igreja-content ul li a:hover{
+    opacity: 0.7;
 }
 
 .igreja-content ul li strong{
-    display: block;
     margin-bottom: 14px;
     color: #41414d;
 }

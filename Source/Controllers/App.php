@@ -25,21 +25,21 @@ class App extends Controller
 
     public function home(): void
     {
-        $cem = $_SESSION["cem"];
+        $cem = $_SESSION["idCem"];
 
-        $members = (new MembersModel())->find("supervisao = :name", "name={$cem}")->count();
+        $members = (new MembersModel())->find("supervisao = :n", "n={$cem}")->count();
 
-        $n_encontro = (new EncontroModel())->find()->limit(1)->order("n_encontro DESC")->fetch(false);
+        $encontro = (new EncontroModel())->find("tipo = :e", "e=encontro")->limit(1)->order("n_encontro DESC")->fetch(false);
 
-        $encontristas =  (new EncontroModel())->find("n_encontro = :enc", "enc= {$n_encontro->n_encontro}")->fetch(true);
-        $cnt = 0;
-        foreach ($encontristas as $encontrista) {
-            $info_encontrista = (new EncontristaModel())->findById($encontrista->encontrista);
-            if ($info_encontrista->CEM === $cem) {
-                $cnt++;
-                //var_dump($cnt);
-            }
-        }
+        $reencontro = (new EncontroModel())->find("tipo = :e", "e=reencontro")->limit(1)->order("n_encontro DESC")->fetch(false);
+
+
+        $encontristas =  (new EncontristaModel())->find("idEncontro = :enc AND idcem = :cem", "enc= {$encontro->id} & cem={$cem}")->count();
+
+        $reencontristas =  (new EncontristaModel())->find("idEncontro = :enc AND idcem = :cem", "enc= {$reencontro->id} & cem={$cem}")->count();
+
+
+
 
         //$encontrista = (new EncontristaModel())->find("CEM = :name AND n_encontro", "name={$cem}")->count();
         //var_dump( $n_encontrista);
@@ -56,11 +56,21 @@ class App extends Controller
             "user" => $this->user,
             "title" => "Dashboard | " . SITE['name'],
             "members" => $members,
-            "encontro" => $n_encontro->n_encontro,
-             "encontrista" => $cnt
+            "encontro" => $encontro->n_encontro,
+            "reencontro" => $reencontro->n_encontro,
+            "encontrista" => $encontristas,
+            "reencontrista" => $reencontristas
         ]);
     }
 
+    public function painel()
+    {
+        echo $this->view->render("painel/painel", [
+
+            "title" => "Dashboard | " . SITE['name'],
+
+        ]);
+    }
 
     public function logoff()
     {

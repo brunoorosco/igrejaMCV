@@ -25,29 +25,56 @@ class CourseController extends Controller
 
     public function list($data): void
     {
-        $cem =  $_SESSION['cem'];
+      
         $cursos = (new CourseModel())->find()->fetch(true);
         echo $this->view->render("cursos/cursos", [
-            "title" => "Minha CEM | " . SITE['name'],
+            "title" => "Cursos | " . SITE['name'],
             "cursos" => $cursos
 
         ]);
     }
 
-    public function new($data): void
+    public function newPage($data): void
     {
-        echo $this->view->render("cem/add", [
-            "title" => "Minha CEM | " . SITE['name']
+        echo $this->view->render("cursos/add", [
+            "title" => "Cursos | " . SITE['name'],
+            "status" => "Novo Curso",
+            "button" => "Enviar",
+            "link" => "add",
+            "disable" => "enabled",
+
+        ]);
+    }
+
+    public function editarPage($data): void
+    {
+        $curso = (new CourseModel())->findById("{$data["id"]}");
+        echo $this->view->render("cursos/add", [
+            "title" => "Cursos | " . SITE['name'],
+            "curso" => $curso,
+            "status" => "Editar Curso",
+            "button" => "Atualizar",
+            "link" => "edit",
+            "disable" => "disabled"
 
         ]);
     }
 
 
-    public function atualizar($data): void
-    {
-        $atualizar = $this->update_create($data, "update");
+    //////função CRUD 
 
-        if ($atualizar) {
+    public function editar($data): void
+    {
+        $curso = (new CourseModel())->findById("{$data['idCursos']}");
+
+        $jobData = filter_var_array($data, FILTER_SANITIZE_STRING);
+
+        $curso->nomeCursos = $jobData["nomeCursos"];
+        $curso->tema = $jobData["tema"];
+        $curso->data_ =  $jobData["data_"];
+
+
+        if ($curso->save()) {
             echo $this->ajaxResponse("message", [
                 "type" => "success",
                 "message" => "Registro alterado com sucesso!"
@@ -64,11 +91,18 @@ class CourseController extends Controller
 
     public function adicionar($data): void
     {
-        $criar = $this->update_create($data, "create");
-        if ($criar) {
+        $curso = (new CourseModel());
+
+        $jobData = filter_var_array($data, FILTER_SANITIZE_STRING);
+
+        $curso->nomeCursos = $jobData["nomeCursos"];
+        $curso->tema = $jobData["tema"];
+        $curso->data_ =  $jobData["data_"];
+
+        if ($curso->save()) {
             echo $this->ajaxResponse("message", [
                 "type" => "success",
-                "message" => "Membro cadastrado com sucesso!"
+                "message" => "Curso cadastrado com sucesso!"
             ]);
             return;
         } else {
@@ -80,44 +114,15 @@ class CourseController extends Controller
         }
     }
 
-    public function update_create($data, $func): bool
-    {
-        $member = (new CourseModel())->findById($data['idmembros']);
-
-        $jobData = filter_var_array($data, FILTER_SANITIZE_STRING);
-
-        $member->nome = $jobData["nome"];
-        $member->email = $jobData["email"];
-        $member->nasc =  date("Y-m-d", strtotime(str_replace('/', '-', $jobData["nasc"])));
-        $member->cargo = $jobData["cargo"];
-        $member->supervisao = $jobData["supervisao"];
-        $member->igreja = $jobData["igreja"];
-        $member->telefone = $jobData["telefone"];
-        $member->endereco = $jobData["endereco"];
-        $member->numero = $jobData["numero"];
-        //var_dump($member);
-        if ($member->save()) return true;
-        else return false;
-    }
-
-    public function editar($data): void
-    {
-        $member = (new CourseModel())->findById("{$data["id"]}");
-        echo $this->view->render("cem/edit", [
-            "title" => "Membros | " . SITE['name'],
-            "member" => $member
-
-        ]);
-    }
     public function excluir($data)
     {
         if (empty($data["id"])) return;
 
         $id = filter_var($data["id"], FILTER_VALIDATE_INT);
-        $member = (new CourseModel())->findById($id);
+        $curso = (new CourseModel())->findById($id);
 
-        if ($member) {
-            $member->destroy();
+        if ($curso) {
+            $curso->destroy();
         }
         $callback = true;
         echo json_encode($callback);

@@ -8,6 +8,7 @@ use Source\Models\EncontroModel;
 use Source\Models\EncontristaModel;
 
 
+////PGINA DE USO DA SECETRARIA ENCONTRO E GERAL
 class EncontroController extends Controller
 {
     public function __construct($router)
@@ -15,7 +16,7 @@ class EncontroController extends Controller
         parent::__construct($router);
         if (empty($_SESSION["user"]) || !$this->user = (new UserModel())->findById($_SESSION["user"])) {
             unset($_SESSION["user"]);
-           
+
             flash("error", "Acesso negado!");
             $this->router->redirect("web.login");
         }
@@ -23,127 +24,115 @@ class EncontroController extends Controller
 
     public function encontros($enc): void
     {
-        $cem = $_SESSION["cem"];
-       
-        //$n_encontro = (new EncontroModel())->find()->limit(1)->order("n_encontro DESC")->fetch(false);
-
-        $encontristas =  (new EncontroModel())->find("n_encontro = :enc", "enc= {$enc['id']}")->fetch(true);
-        
-       // $encontrista = (new EncontristaModel())->find("CEM = :c ","c= {$cem}")->fetch(true);
-
-        //var_dump($encontrista);
-     
-        foreach ($encontristas as $encontrista) {
-             $info_encontrista = (new EncontristaModel())->findById($encontrista->encontrista);
-            if ($info_encontrista->CEM === $cem) {
-                 $members[] = $info_encontrista->data();
-        //   var_dump(  $info_encontrista);
-            }
-            
-        }
+        $encontros =  (new EncontroModel())->find()->order("data_inicial DESC")->fetch(true);
 
         echo $this->view->render("encontro/encontro", [
             "title" => "Encontro  | " . SITE['name'],
-            "encontristas" => $members,
+            "encontros" => $encontros,
+        ]);
+    }
 
+    public function cadastroPage($data): void
+    { {
+            $encontros = (new EncontroModel())->find()->fetch(true);
+            echo $this->view->render("encontro/cadastropage", [
+                "title" => "Encontro | " . SITE['name'],
+                "status" => "Cadastro Encontro",
+                "button" => "Cadastrar",
+                "link" => "add",
+                "disable" => "enabled",
 
+            ]);
+        }
+    }
+
+    public function editPage($data): void
+    {
+        $encontros = (new EncontroModel())->findById($data['id']);
+
+        echo $this->view->render("encontro/cadastropage", [
+            "title" => "Encontro | " . SITE['name'],
+            "status" => "Alterar Encontro",
+            "button" => "Alterar",
+            "link" => "edit",
+            "disable" => "enabled",
+            "encontro" => $encontros,
 
         ]);
     }
-    public function adicionar($data): void
-    {
-        $criar = $this->update_create($data, "create");
-        //if ($empresa->save()) {
-        if ($criar) {
-            $callback["message"] = "Ensaio cadastrada com sucesso!";
-            $callback["action"] = "success";
-            echo json_encode($callback);
-        } else {
-            $callback["message"] = "Não foi possivel cadastrar!";
-            $callback["action"] = "error";
-            echo json_encode($callback);
-        }
-    }
 
-    public function atualizar($data)
-    {
-        $atualizar = $this->update_create($data, "update");
-        //if ($empresa->save()) {
-        if ($atualizar) {
-            $callback["message"] = "Ensaio atualizado com sucesso!";
-            $callback["action"] = "success";
-            echo json_encode($callback);
-        } else {
-            $callback["message"] = "Não foi possivel Atualizar!";
-            $callback["action"] = "error";
-            echo json_encode($callback);
-        }
-    }
-
-    public function update_create($data, $func): bool
+    ///////////------FUNÇÃO CRUD ---------------/////////////////  
+    public function create($data): void
     {
 
-        $norma = (new EncontristaModel())->find("Nome = :name", "name={$data['nomeNorma']}")->fetch(false);
-        if (!$norma) return false;
-
-
-        if ($func === "update") {
-            $ensaio = (new EncontroModel())->findById($data['id']);
-        } else {
-            $ensaio = new EncontroModel();
-        }
+        $encontro =  (new EncontroModel());
 
         $jobData = filter_var_array($data, FILTER_SANITIZE_STRING);
 
-        if (empty($jobData["ensaio"])) {
-            $callback["message"] = message("informe o Nome da Ensaio");
-            echo json_encode($callback);
-            return false;
+        $encontro->tipo = $jobData["tipo"];
+        $encontro->n_encontro = $jobData["n_encontro"];
+        $encontro->responsavel = $jobData['responsavel'];
+        $encontro->data_inicial = $jobData['data_inicial'];
+
+        if (!$encontro->save()) {
+            echo $this->ajaxResponse("message", [
+                "type" => "error",
+                "message" => $encontro->fail()->getMessage()
+            ]);
+            return;
         }
 
-        $ensaio->Nome = $jobData["ensaio"];
-        $ensaio->CodEnsaio = $jobData["codEnsaio"];
-        $ensaio->codNorma = $norma->Codigo;
-        $ensaio->Carga = $jobData["qtHoras"];
-        $ensaio->Preco = $jobData["preco"];
-        $ensaio->Status = $jobData["status"];
-        // $ensaio->Status = $jobData["status"];
-
-        if ($ensaio->save()) return true;
-        else return false;
-    }
-
-    public function editar($data): void
-    {
-        /** não esquecer de inserir uma coluna com a cod de norma no ensaio */
-        $ens = new EncontroModel();
-        $ensaio = $ens->findById("{$data["id"]}");
-
-        if ($ensaio->codNorma) {
-            $norma = (new EncontristaModel())->findById($ensaio->codNorma);
-        }
-
-        //   $norma = $ens->ensaioNorma($ensaio);
-
-        echo $this->view->render("../ensaio/edit", [
-            "title" => "Ensaios  | " . SITE['name'],
-            "ensaio" => $ensaio,
-            "norma" => $norma
-
+        echo $this->ajaxResponse("message", [
+            "type" => "success",
+            "message" => "Registrado com Sucesso"
         ]);
+        return;
     }
 
-    public function excluir($data)
+
+    public function update($data): void
     {
+        $jobData = filter_var_array($data, FILTER_SANITIZE_STRING);
+
+        $encontro =  (new EncontroModel())->findById($jobData['id']);
+
+        $encontro->tipo = $jobData["tipo"];
+        $encontro->n_encontro = $jobData["n_encontro"];
+        $encontro->responsavel = $jobData['responsavel'];
+        $encontro->data_inicial = $jobData['data_inicial'];
+
+        if (!$encontro->save()) {
+            echo $this->ajaxResponse("message", [
+                "type" => "error",
+                "message" => $encontro->fail()->getMessage()
+            ]);
+            return;
+        }
+
+        echo $this->ajaxResponse("message", [
+            "type" => "success",
+            "message" => "Alterado com Sucesso"
+        ]);
+        return;
+    }
+
+    public function delete($data)
+    {
+
         if (empty($data["id"])) return;
 
         $id = filter_var($data["id"], FILTER_VALIDATE_INT);
-        $ensaio = (new EncontroModel())->findById($id);
-        var_dump($ensaio);
-        if ($ensaio) {
-            $ensaio->destroy();
+
+        //$member = (new MembersModel())->find("idmembros = :id","id={$id}")->fetch(false);
+        $member = (new EncontroModel())->findById($id);
+
+        $callback = false;
+
+        if ($member) {
+            $member->destroy();
+            $callback = true;
         }
-        $callback = true;
+
         echo json_encode($callback);
     }
 }

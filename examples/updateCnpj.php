@@ -39,8 +39,3 @@ foreach ($list as $userItem) {
     //       var_dump($address->data());
     //   }
 }
-
-//$empresa = (new User())->find("CNPJ = :name", "name={$userItem->CNPJ}")->fetch(false);
-
-//$user->CNPJ = "Paulo";
-//$user->save();

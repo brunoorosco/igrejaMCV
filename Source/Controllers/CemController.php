@@ -5,6 +5,7 @@ namespace Source\Controllers;
 use Source\Models\CemModel;
 use Source\Models\UserModel;
 use Source\Models\MembersModel;
+use Source\Models\IgrejaModel;
 
 
 
@@ -36,13 +37,38 @@ class CemController extends Controller
 
     public function incluir($data): void
     {
-        echo $this->view->render("cem/add", [
-            "title" => "Minha CEM | " . SITE['name']
+        $igrejas = (new IgrejaModel())->find()->order("igreja ASC")->fetch(true);
+
+        echo $this->view->render("cem/cadastroCem", [
+            "title" => "Minha CEM | " . SITE['name'],
+            "igrejas" => $igrejas,
+            "status" => "Nova CEM's",
+            "button" => "Cadastrar",
+            "link" => "add",
+            "disable" => "enabled",
+        ]);
+    }
+
+
+    public function pageTransfer($data): void
+    {
+        $membro = (new MembersModel())->findById($data['id']);
+        $igrejas = (new IgrejaModel())->find()->order("igreja ASC")->fetch(true);
+        $cem = (new CemModel())->find()->order("nome_cem ASC")->fetch(true);
+
+        echo $this->view->render("cem/transferMembro", [
+            "title" => "Minha CEM | " . SITE['name'],
+            "membro" => $membro,
+            "igrejas" => $igrejas,
+            "cems" => $cem,
+
 
         ]);
     }
 
-   
+
+
+
     public function atualizar($data): void
     {
         $atualizar = $this->update_create($data, "update");
@@ -66,7 +92,7 @@ class CemController extends Controller
     {
         $criar = $this->update_create($data, "create");
         if ($criar) {
-           echo $this->ajaxResponse("message", [
+            echo $this->ajaxResponse("message", [
                 "type" => "success",
                 "message" => "Membro cadastrado com sucesso!"
             ]);
@@ -111,21 +137,21 @@ class CemController extends Controller
     }
     public function excluir($data)
     {
-        
+
         if (empty($data["id"])) return;
 
         $id = filter_var($data["id"], FILTER_VALIDATE_INT);
-       
+
         //$member = (new MembersModel())->find("idmembros = :id","id={$id}")->fetch(false);
         $member = (new MembersModel())->findById($id);
-       
+
         $callback = false;
-        
-        if ( $member ) {
+
+        if ($member) {
             $member->destroy();
             $callback = true;
         }
-      
+
         echo json_encode($callback);
     }
 }

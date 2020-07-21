@@ -5,6 +5,8 @@ namespace Source\Controllers;
 use Source\Models\IgrejaModel;
 use Source\Models\UserModel;
 use Source\Models\MembersModel;
+use Source\Models\CemModel;
+use Source\Support\Email;
 
 class Auth extends Controller
 {
@@ -16,8 +18,11 @@ class Auth extends Controller
     {
         $email = filter_var($data["user"], FILTER_DEFAULT);
         $passwd = filter_var($data["passwd"], FILTER_DEFAULT);
-     
-        if (!$email || !$passwd) {
+
+        $member = (new MembersModel())->find("email = :e", "e={$email}")->fetch(false);
+
+        ///// VERIFICA SE TEM ALGUM EMAIL E SENHA
+        if (!$email || !$passwd || !$member) {
             echo $this->ajaxResponse("message", [
                 "type" => "atencion",
                 "message" => "Informe seu e-mail e senha para logar"
@@ -25,31 +30,36 @@ class Auth extends Controller
             return;
         }
 
-        $user = (new UserModel())->find("username = :e", "e={$email}")->fetch(false);
+        $user = (new UserModel())->find("userID = :id", "id={$member->idmembros}")->fetch(false);
+
         $passwd = sha1($passwd);
-         //if (!$user || !password_verify($passwd, $user->passwd)) {
+        //if (!$user || !password_verify($passwd, $user->passwd)) {
         if (!$user ||  $passwd != $user->password) {
             echo $this->ajaxResponse("message", [
                 "type" => "atencion",
                 "message" => "E-mail ou senha não conferem!"
-               // "message" => $user->password
+                // "message" => $user->password
             ]);
             return;
         }
 
         $_SESSION["user"] = $user->id;
-        $_SESSION["userName"] = $user->username;
         $_SESSION["userJob"] = $user->nivel_acesso;
-     
-        
-        $member = (new MembersModel())->find("email = :e", "e={$email}")->fetch(false);
-        $_SESSION["cem"] = $member->supervisao;
+        $_SESSION["userName"] = $member->email;
+        $_SESSION["idCem"] = $member->supervisao;
 
-        $igreja = (new IgrejaModel())->findById(1);
-        echo $_SESSION["cem"];
+        $_SESSION["nomeCem"] = $member->supervisao;
+        $_SESSION['idIgreja'] = $member->igreja;
+
+        ////CARRREGA AS INFORMAÇÕES DA IGREJA NA VARIAVEL
+        $igreja = (new IgrejaModel())->findById($member->igreja);
         $_SESSION["igreja"] = $igreja->igreja;
 
-        echo $this->ajaxResponse("redirect",["url" => $this->router->route("app.home")]);
+        ////CARRREGA AS INFORMAÇÕES DA CEM NA VARIAVEL
+        $cem = (new CemModel())->findById($member->supervisao);
+        $_SESSION["nomeCem"] = $cem->nome_cem;
+
+        echo $this->ajaxResponse("redirect", ["url" => $this->router->route("app.home")]);
     }
 
     public function register($data)
@@ -79,6 +89,59 @@ class Auth extends Controller
         $_SESSION["user"] = $user->id;
         echo $this->ajaxResponse("redirect", [
             "url" => $this->router->route("app.home")
+        ]);
+    }
+
+    public function forget($data): void
+    {
+        $email = filter_var($data["email"], FILTER_VALIDATE_EMAIL);
+
+        $member = (new MembersModel())->find("email = :e", "e={$email}")->fetch(false);
+
+        ///// VERIFICA SE TEM ALGUM EMAIL
+        if (!$member || !$email) {
+            echo $this->ajaxResponse("message", [
+                "type" => "atencion",
+                "message" => "Informe o SEU EMAIL de cadastro"
+            ]);
+            return;
+        }
+
+        //VERIFICA SE ESTE EMAIL POSSUI CADASTRADO NO ACESSO
+        $user = (new UserModel())->find("userID = :id", "id={$member->idmembros}")->fetch(false);
+
+        if (!$user) {
+            echo $this->ajaxResponse("message", [
+                "type" => "error",
+                "message" => "Email não cadastrado"
+            ]);
+            return;
+        }
+
+        $user->forget = (sha1(uniqid(rand(), true)));
+        $user->save();
+
+        $_SESSION["forget"] = $user->id;
+
+        $email = new Email();
+
+        $email->add(
+            "Recupere sua senha | " . SITE["name"],
+            $this->view->render("emails/recover", [
+                "user" => $member,
+                "link" => $this->router->route("web.reset", [
+                    "email" => $member->email,
+                    "forget" => $user->forget
+                ])
+            ]),
+            $member->nome,
+            $member->email
+        )->send();
+
+        flash("success", "Enviamos um link para seu email");
+
+        echo $this->ajaxResponse("redirect", [
+            "url" => $this->router->route("web.forget")
         ]);
     }
 }

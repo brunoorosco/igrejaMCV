@@ -12,7 +12,7 @@ class CemModel extends DataLayer
     {
         //parent::__construct("tbl_empresas", ["CodigoCliente", "Nome","Endereco","Numero","CNPJ","Contato", 
         // "Email", "Telefone", "Ie","CEP","Fax","Ramal","Bairro","Cidade","Estado","Sgset","Status","CPF","Telefone2","Celular"], "Codigo");
-        parent::__construct("tbl_empresas", ["Nome", "Endereco", "Numero", "CNPJ", "Telefone"], "Codigo",false);
+        parent::__construct("cem", ["responsavel", "nome_cem"], "id",false);
     }
    
 }

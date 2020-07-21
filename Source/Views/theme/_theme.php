@@ -18,9 +18,9 @@
     <main class="main_content">
         <?= $v->section("content"); ?>
     </main>
+
     <footer class="main_footer">
         <?= SITE['name'] ?> - Todos os Direitos Reservados
-
     </footer>
 
     <script src="<?= asset('js/jquery-3.4.1.js')?>"></script>

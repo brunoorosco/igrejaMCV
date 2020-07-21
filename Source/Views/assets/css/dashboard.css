@@ -42,9 +42,9 @@ img .img-widget{
 }
 .widget-box__subtitle {
     display: block;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     max-width: 100%;
 }
@@ -53,8 +53,9 @@ img .img-widget{
     display: block;
     margin-top: 1.0rem;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2.0rem;
     font-weight: 500;
     max-width: 100%;
+    color: #3535aa;
 }
 

@@ -1,6 +1,7 @@
 $(function () {
 
     $('table').DataTable({
+        "order": [],
         "language": {
             "lengthMenu": "Mostrar _MENU_ itens p/ Pág.",
             "zeroRecords": "Não foi possivel encontrar nenhum registro",
@@ -27,14 +28,14 @@ $("body").on("click", "[data-action]", function(e) {
     var id = $(this).data('id');
 
     var func = $(this).data('func');
-     console.log(data);
+     //console.log(data, tr);
     // alert(data.action); //returna -> https://localhost/www/SLAB/empresa/editar
     if (func === "exc") {
         swal({
                 title: "Deseja realmente excluir?",
                 text: data.nome,
                 icon: "warning",
-                buttons: {
+                 buttons: {
                     cancel: {
                         text: "Cancel",
                         value: null,
@@ -51,7 +52,7 @@ $("body").on("click", "[data-action]", function(e) {
 
                     },
                 },
-                dangerMode: true,
+               dangerMode: true,
             })
             .then((willDelete) => {
                 if (willDelete) {

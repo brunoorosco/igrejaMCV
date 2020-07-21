@@ -9,29 +9,41 @@ class MembersModel extends DataLayer
 {
     public function __construct()
     {
-         parent::__construct("membros", ["nome","cargo","igreja",], "idmembros", true);
+        parent::__construct("membros", ["nome", "cargo", "igreja",], "idmembros", true);
     }
 
-    // protected function validaEmail(): bool
-    // {
-    //     if (empty($this->email) || !filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-    //         $this->fail = new Exception("Informe um e-mail válido");
-    //         return false;
-    //     }
+    public function save(): bool
+    {
+        if (
+             !$this->validarEmail() ||
+             !parent::save()
+        ) {
+            return false;
+        }
+        return true;
+    }
 
-    //     $userByEmail = null;
+    protected function validarEmail(): bool
+    {
+        if (empty($this->email)) {
+                return true;
+        }
+      
 
-    //     if (!$this->id) {
-    //         $userByEmail = $this->find("Email = :email", "email={$this->email}")->count();
-    //     } else {
-    //         $userByEmail = $this->find("Email = :email AND Codigo != :id", "email={$this->email} & id={$this->id}")->count();
-    //     }
+        $userByEmail = null;
 
-    //     if ($userByEmail) {
-    //         $this->fail = new Exception("O e-mail informado já esta em uso");
-    //     }
-    //     return true;
-    // }
+        if (!$this->idmembros) {
+            $userByEmail = $this->find("email = :email", "email={$this->email}")->count();
+        } else {
+            $userByEmail = $this->find("email = :email AND idmembros != :id", "email={$this->email} & id={$this->idmembros}")->count();
+        }
+
+        if ($userByEmail) {
+            $this->fail = new Exception("O e-mail informado já esta em uso");    
+            return false;
+        }
+        return true;
+    }
 
     // public static function validarUsuario()
     // {

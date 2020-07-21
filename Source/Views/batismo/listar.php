@@ -10,31 +10,17 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Batismo</h5>
+            <nav class="navbar ">
+                <a class="navbar-brand">
+                    <h4>Batismo</h4>
+                </a>
+                <a class="btn btn-sm btn-primary " href="<?= url("batismo/add"); ?>"> <i class="fa fa-plus"></i> Novo Batismo</a>
 
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#">Config option 1</a>
-                            </li>
-                            <li><a href="#">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content">
-
-                    <table class="table" id="tabelaBat">
+            </nav>
+            <div class="">
+                <div class="">
+                    
+                    <table class="table" >
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -57,7 +43,7 @@
                                         <a data-action="<?= url("batismo/editar") ?>" data-id=<?= $bat->id ?>>
                                             <i class="fa fa-pencil text-navy"></i>
                                         </a>
-                                        <a data-action="<?= url("batismo/excluir") ?>" data-id=<?= $bat->id ?>  data-func="exc">
+                                        <a data-action="<?= url("batismo/excluir") ?>" data-id=<?= $bat->id ?> data-func="exc">
                                             <i class="fa fa-trash text-navy"></i>
                                         </a>
                                         <!-- <a href="<?= url("comp/") . $bat->id ?>/excluir">
@@ -82,69 +68,5 @@
 <script src="js/sweetalert.min.js"></script>
 <script src="js/datatables.min.js"></script>
 <script src="js/tabela.js"></script>
-
-<script>
-    $(document).ready(function() {
-
-        $("body").on("click", "[data-action]", function(e) {
-            e.preventDefault();
-            var data = $(this).data();
-            var div = $(this).parent().parent();
-
-            var tr = $(this).closest('tr');
-            var id = $(this).data('id');
-
-            var func = $(this).data('func');
-            if (func === "exc") {
-            swal({
-                    title: "Deseja realmente excluir a composicao?",
-                    text: data.nome,
-                    icon: "warning",
-                    buttons: {
-                        cancel: {
-                            text: "Cancel",
-                            value: null,
-                            visible: true,
-                            className: "",
-                            closeModal: true,
-                        },
-                        confirm: {
-                            text: "OK",
-                            value: true,
-                            visible: true,
-                            className: "",
-                            closeModal: true,
-
-                        },
-                    },
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            url: data.action,
-                            data: data,
-                            type: 'POST',
-
-                        }).done(function(resp) {
-
-                            tr.fadeOut('slow', function() {});
-
-                        }).fail(function(resp) {
-
-                        })
-
-
-
-                    }
-                })
-            } else {
-                window.location.href = data.action + '/' + data.id;
-            }
-        })
-
-
-    })
-</script>
 
 <?php $v->end(); ?>

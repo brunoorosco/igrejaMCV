@@ -3,7 +3,7 @@ function validar() {
 	
 	
 	codigoCliente = document.frm_cadEmpresas.txt_codcliente.value;
-	empresa = document.frm_cadEmpresas.txt_nome.value;
+	cep = document.formMembor.txt_cep.value;
 	email = document.frm_cadEmpresas.txt_email.value;
 	cnpj = document.frm_cadEmpresas.txt_cnpj.value;
 	telefone = document.frm_cadEmpresas.txt_telefone.value;
@@ -34,7 +34,7 @@ function validar() {
 				document.frm_cadEmpresas.txt_cpf.style.backgroundColor = "#68A0D9";
 			}
 			
-			if (codigoCliente == "") {
+			if (cep == "") {
 				
 				document.frm_cadEmpresas.txt_codcliente.style.backgroundColor = "#68A0D9";
 			}

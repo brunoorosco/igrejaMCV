@@ -53,10 +53,9 @@ class IgrejaController extends Controller
     public function delete($data):void
     {
         if (empty($data["id"])) return;
-
         $id = filter_var($data["id"], FILTER_VALIDATE_INT);
         $equip = (new IgrejaModel())->findById($id);
-        var_dump($equip);
+        
         if ($equip) {
             $equip->destroy();
         }

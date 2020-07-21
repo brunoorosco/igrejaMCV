@@ -10,72 +10,18 @@
 <div class="page">
     <div class="ajax_load"></div>
     <div class="container">
-        <div class="row m-0">
-            <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
-                <div class="widget-box cursor-pointer">
-                    <a href="<?= url("minhacem") ?>" class="widget-box__link" target="">
-                        <div class="widget-box__content">
-                            <span class="widget-box__subtitle text-center">
-                                <span>Novo Curso</span>
-                            </span>
-                            <span class="widget-box__counter text-center">
-                                <span></span>
-                            </span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
-                <div class="widget-box cursor-pointer">
-                    <a href="" class="widget-box__link" target="">
-                        <div class="widget-box__content">
 
-                            <span class="widget-box__subtitle text-center">
-                                <span>Editar Curso</span>
-                            </span>
-                            <span class="widget-box__counter text-center">
-                                <span></span>
-                            </span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
-                <div class="widget-box cursor-pointer">
-                    <a href="" class="widget-box__link" target="">
-                        <div class="widget-box__content">
 
-                            <span class="widget-box__subtitle text-center">
-                                <span>Excluir</span>
-                            </span>
-                            <span class="widget-box__counter text-center">
-                                <span></span>
-                            </span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col col-6 col-sm-4 col-md-3 p-3 col-lg-5-12">
-                <div class="widget-box cursor-pointer">
-                    <a href="" class="widget-box__link" target="">
-                        <div class="widget-box__content">
+        <nav class="navbar navbar-light bg-light mb-2">
 
-                            <span class="widget-box__subtitle text-center">
-                                <span>Casa de Paz</span>
-                            </span>
-                            <span class="widget-box__counter text-center">
-                                <span></span>
-                            </span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+            <a class="navbar-brand">
+                <h5>Cursos</h5>
+            </a>
+            <a class="btn btn-sm btn-primary my-2 my-sm-0" href="<?= url("cursos/add"); ?>"> <i class="fa fa-plus"></i> Novo Curso</a>
+        </nav>
+
         <div class=" m-0">
             <div class="ibox float-e-margins ">
-                <div class="ibox-title">
-                    <h5>Cursos</h5>
-                </div>
                 <div class="ibox-content">
 
                     <table class="table">
@@ -125,8 +71,6 @@
             </div>
         </div>
     </div>
-</div>
-<p><a class="btn btn-green" href="<?= $router->route("app.logoff"); ?>" title="Sair agora">SAIR AGORA :)</a></p>
 </div>
 
 <?php $v->start("js"); ?>
