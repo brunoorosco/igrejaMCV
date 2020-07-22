@@ -1,14 +1,26 @@
 <?php
 
+// define(
+//     "SITE",
+//     [
+//         "name" => "#Comunidade Avivamento em Cristo",
+//         "desc" => "GESTÃO DE MEMBRESIA COMUNIDADE AVIVAMENTO EM CRISTO",
+//         "domain" => "192.168.10.105/",
+//         //"domain" => "slab.sp.senai.br/",
+//         "locale" => "pt-br",
+//         "root" => "http://192.168.10.105/newIgreja"
+//         //"root" => "https://slab.sp.senai.br"
+//     ]
+// );
 define(
     "SITE",
     [
         "name" => "#Comunidade Avivamento em Cristo",
         "desc" => "GESTÃO DE MEMBRESIA COMUNIDADE AVIVAMENTO EM CRISTO",
-        "domain" => "192.168.10.105/",
+        "domain" => "secretariacac.com/teste",
         //"domain" => "slab.sp.senai.br/",
         "locale" => "pt-br",
-        "root" => "http://192.168.10.105/newIgreja"
+        "root" => "https://secretariacac.com/teste"
         //"root" => "https://slab.sp.senai.br"
     ]
 );
